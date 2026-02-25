@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dennis Forge — Codemods deterministas en los que puedes confiar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dennis Forge es un motor determinista de codemods para proyectos Git. Genera planes de transformación revisables, exportables y reversibles." />
+  <meta name="keywords" content="codemods, deterministic refactoring, git transformations, developer tools, code migration, static analysis, CLI tools" />
+  <meta name="author" content="Carlos Revilla" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0f1416" />
+
+  <meta property="og:title" content="Dennis Forge — Codemods deterministas en los que puedes confiar" />
+  <meta property="og:description" content="Planifica, inspecciona y revierte transformaciones de código con seguridad. CLI-first, código abierto y determinista." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://crevilla2050.github.io/dennis-forge/" />
+  <meta property="og:image" content="https://crevilla2050.github.io/dennis-forge/assets/images/dennis-forge-hero.png" />
+  <meta property="og:site_name" content="Dennis Forge" />
+  <meta name="google-site-verification" content="ADD_LATER" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dennis Forge — Codemods deterministas" />
+<meta name="twitter:description" content="Motor determinista para transformar proyectos Git. Sin magia. Sin lock-in." />
+  <meta name="twitter:image" content="https://crevilla2050.github.io/dennis-forge/assets/images/dennis-forge-hero.png" />
+  <link rel="canonical" href="https://crevilla2050.github.io/dennis-forge/" />
+  
+  <link rel="alternate" hreflang="en" href="https://crevilla2050.github.io/dennis-forge/" />
+  <link rel="alternate" hreflang="es" href="https://crevilla2050.github.io/dennis-forge/index-es.html" />
+  <link rel="alternate" hreflang="de" href="https://crevilla2050.github.io/dennis-forge/index-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://crevilla2050.github.io/dennis-forge/" />
+  <link rel="preload" as="image" href="assets/images/dennis-forge-hero.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Dennis Forge",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "author": {
+        "@type": "Person",
+        "name": "Carlos Revilla"
+      },
+      "description": "Deterministic transformation engine for Git-native projects.",
+      "url": "https://crevilla2050.github.io/dennis-forge/",
+      "license": "https://opensource.org/licenses/MIT",
+      "codeRepository": "https://github.com/crevilla2050/dennis-forge"
+    }
+  </script>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="header-bg"></div>
+
+ <div class="header-content">
+
+  <button class="sidebar-toggle" onclick="toggleSidebar()">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <img src="assets/images/logo.png" class="sidebar-logo" />
+<div class="lang-switch">
+  <a href="index.html">EN</a>
+  <a href="index-es.html" class="active">ES</a>
+  <a href="index-de.html">DE</a>
+</div>
+</div>
+</header>
+
+
+<!-- ================= MAIN LAYOUT ================= -->
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        <nav class="sidebar-nav">
+          <a href="#what"><i class="bi bi-stars"></i><span>¿Qué es Dennis?</span></a>
+          <a href="#how"><i class="bi bi-diagram-3"></i><span>Cómo funciona</span></a>
+          <a href="#safety"><i class="bi bi-shield-check"></i><span>Seguridad y reversión</span></a>
+          <a href="#oss"><i class="bi bi-code-square"></i><span>CLI y código abierto</span></a>
+          <a href="#cloud"><i class="bi bi-cloud"></i><span>Local o nube</span></a>
+          <a href="#why"><i class="bi bi-question-circle"></i><span>¿Por qué?</span></a>
+        </nav>
+    </div>
+  </aside>
+
+
+  <!-- ===== CONTENT ===== -->
+  <main class="content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Codemods deterministas,<br /><span>forjados con intención.</span></h1>
+
+        <p>
+          Dennis es un motor determinista de transformaciones para proyectos basados en Git.
+          Genera planes que puedes inspeccionar, exportar, compartir y revertir con total confianza.
+          Sin magia. Sin cajas negras. Solo control.
+        </p>
+
+        <div class="cta">
+          <a href="https://github.com/crevilla2050/dennis-forge" class="btn primary">GitHub</a>
+          <a href="#quickstart" class="btn secondary">Primer uso</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="assets/images/dennis-forge-hero.png" />
+      </div>
+    </section>
+    
+    <div class="saas-intent">
+      <p>
+        Dennis es CLI-first y completamente open source.
+        El concepto de forge extiende esta idea hacia planes compartibles y portables,
+        sin cambiar el núcleo determinista.
+      </p>
+      <p class="muted">
+        Puedes ejecutar todo localmente. Siempre.
+      </p>
+    </div>
+
+    <section id="what" class="section">
+        <h2>¿Qué es Dennis?</h2>
+        <p>
+            Dennis es un motor determinista de transformaciones para proyectos de código.
+            Te ayuda a planear, inspeccionar y aplicar grandes cambios sin miedo. Muy util para refactors, migraciones y mantenimiento de sistemas legacy.
+            Así como para cualquier proyecto que requiera internacionalización, reorganización o limpieza a gran escala.
+        </p>
+        <p>
+            En lugar de modificar archivos a ciegas, Dennis genera un plan —
+            un documento legible que muestra exactamente qué cambiará,
+            antes de aplicar cualquier cambio.
+        </p>
+        <p>
+            Cada transformación es inspeccionable, exportable y reversible.
+            Sin cajas negras. Sin magia. Solo claridad.
+        </p>
+    </section>
+
+    <section id="quickstart" class="section">
+      <h2>Inicio rápido</h2>
+
+      <p>Instala Dennis y genera tu primer plan en segundos.</p>
+
+      <div class="demo-box">
+        <code>pipx install dennis</code><br>
+        <code>dennis plan ./tu-proyecto</code>
+      </div>
+
+      <p>
+        Esto crea un plan determinista que puedes inspeccionar,
+        exportar, compartir y reutilizar con seguridad.
+      </p>
+    </section>
+
+
+    <section id="how" class="section">
+        <h2>Cómo funciona Dennis</h2>
+        <p>
+          Dennis sigue un flujo simple y transparente:
+        </p>
+
+        <ul class="flow">
+          <li><strong>Planificar</strong> — Generar un plan determinista</li>
+          <li><strong>Revisar</strong> — Inspeccionar en JSON o CSV</li>
+          <li><strong>Validar</strong> — Verificar consistencia estructural</li>
+          <li><strong>Aplicar</strong> — Ejecutar cambios con seguridad</li>
+          <li><strong>Revertir</strong> — Deshacer en cualquier momento</li>
+        </ul>
+
+        <p>
+          El plan es la fuente de verdad. Todo parte de él.
+        </p>
+    </section>
+
+    <section id="safety" class="section">
+        <h2>Seguridad y reversibilidad</h2>
+        <p>
+          Cada transformación en Dennis es reversible por diseño.
+          El sistema genera automáticamente el plan inverso,
+          permitiéndote deshacer cambios en cualquier momento.
+        </p>
+        <p>
+          Sin estado oculto. Sin migraciones irreversibles.
+          Si puedes ver el plan, puedes revertirlo.
+        </p>
+        <p>
+          Esto hace que Dennis sea ideal para refactors grandes,
+          sistemas legacy y entornos de alta confianza.
+        </p>
+    </section>
+
+    <section id="oss" class="section">
+        <h2>CLI & Open Source</h2>
+        <p>
+          Dennis está construido como una herramienta abierta y Git-native.
+          La CLI es totalmente funcional y siempre estará disponible.
+        </p>
+        <p>
+          Puedes ejecutar todo localmente, inspeccionar el código
+          e integrarlo en tus propios flujos de trabajo.
+        </p>
+
+        <div class="demo-box">
+          <code>pipx install dennis</code>
+        </div>
+
+        <p>
+          La interfaz web se construye sobre el mismo núcleo determinista —
+          sin lógica oculta, sin transformaciones propietarias.
+        </p>
+    </section>
+
+    <section id="cloud" class="section">
+        <h2>Auto-hospedado o Basado en la nube</h2>
+        <p>
+          Dennis está diseñado para funcionar donde te resulte más cómodo.
+        </p>
+        <p>
+          Puedes usar la CLI localmente, desplegarlo en tu infraestructura
+          o usar el forge hospedado cuando esté disponible.
+        </p>
+        <p>
+          Tus planes siguen siendo portables y legibles,
+          por lo que nunca quedas atado a un entorno.
+        </p>
+    </section>
+
+    <section id="why" class="section">
+        <h2>¿Por qué Dennis?</h2>
+        <p>
+          Dennis nació para resolver una pregunta concreta:
+          <strong>¿Cómo transformar estructuras complejas de forma segura?</strong>
+        </p>
+        <p>
+          Las herramientas tradicionales carecen de transparencia,
+          son lentas o requieren migraciones irreversibles.
+          Dennis resuelve esto haciendo del plan la fuente de verdad.
+        </p>
+        <p>
+          Está diseñado para ingenieros que necesitan moverse rápido
+          sin perder el control sobre sus sistemas.
+        </p>
+    </section>
+    <footer>
+      Forjado lentamente. Construido para la confianza.<br />
+      Licencia MIT · El 15% de los ingresos futuros se donará a UNICEF<br />
+      Dennis the Forge © Carlos Revilla 2026
+    </footer>
+  </main>
+</div>
+<script>
+    function toggleSidebar() {
+        document.body.classList.toggle("sidebar-collapsed");
+    }
+</script>
+<script>
+const sections = document.querySelectorAll(".section");
+const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + id) {
+          link.classList.add("active");
+        }
+      });
+    }
+  });
+}, {
+  root: document.querySelector(".content"),
+  threshold: 0.4
+});
+
+sections.forEach(section => observer.observe(section));
+</script>
+<script>
+// Section glow on enter
+const glowObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("in-view");
+    }
+  });
+}, {
+  root: document.querySelector(".content"),
+  threshold: 0.5
+});
+
+sections.forEach(section => glowObserver.observe(section));
+</script>
+</body>
+</html>
