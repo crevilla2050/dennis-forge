@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dennis Forge — FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently asked questions about Dennis Forge: deterministic codemods, DEX artifacts, signing, safety, and workflow." />
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <main class="content">
+        <section class="section">
+            <h1>Frequently Asked Questions</h1>
+            <p>
+            Dennis Forge introduces a different way of thinking about code transformations.
+            Instead of executing changes blindly, Dennis generates deterministic plans
+            that can be inspected, exported, signed, verified, and applied safely.
+            Dennis follows a simple principle: plans first, changes come later after reviewing.
+            </p>
+            </section>
+            <section class="section">
+            <h2>General</h2>
+            <h3>What problem does Dennis solve?</h3>
+            <p>
+            Large code transformations are risky. Traditional scripts or codemods often
+            modify files immediately, making it difficult to review what will actually change.
+            Dennis solves this by generating a deterministic transformation plan before
+            any modification happens.
+            </p>
+
+            <p>
+            The plan becomes the source of truth. You can review it, edit it, export it,
+            sign it, and only then apply it.
+            </p>
+
+            <h3>Is Dennis a refactoring tool?</h3>
+
+            <p>
+            Not exactly. Dennis is better described as a <strong>transformation planning engine</strong>.
+            It helps you define and apply large structured changes across a codebase.
+            </p>
+
+            <h3>What does "deterministic" mean?</h3>
+
+            <p>
+            Deterministic means that the same input always produces the same output.
+            Given the same codebase and dictionary, Dennis will generate exactly the same plan.
+            </p>
+
+            <p>
+            This guarantees reproducibility and makes plans safe to review, store, and share.
+            </p>
+            
+            <h3>Why the name "Dennis Forge"?</h3>
+            <p>
+            The name reflects the philosophy behind the tool.
+            </p>
+
+            <p>
+            A <strong>forge</strong> is a place where things are crafted carefully,
+            through deliberate steps and visible processes. Nothing happens by accident,
+            and nothing is hidden.
+            </p>
+
+            <p>
+            Dennis follows the same idea. Instead of modifying code blindly,
+            it generates transformation plans that can be inspected,
+            reviewed, and executed intentionally.
+            </p>
+
+            <p>
+            The name <strong>Dennis</strong> is also a quiet homage to
+            <strong>Dennis Ritchie</strong>, co-creator of the C programming language
+            and one of the foundational engineers of modern computing.
+            </p>
+
+            <p>
+            Ritchie’s work emphasized simplicity, clarity, and tools that give
+            programmers control rather than hiding complexity behind abstraction.
+            Dennis tries to follow that same spirit.
+            </p>
+
+            <p>
+            Dennis does not change your code automatically.
+            It helps you shape change deliberately.
+            </p>
+
+        </section>
+
+        <section class="section">
+            <h2>DEX Artifacts</h2>
+            <h3>What is a DEX artifact?</h3>
+            <p>
+            DEX stands for <strong>Dennis Export Artifact</strong>.
+            </p>
+
+            <p>
+            It is a portable package containing a transformation plan, metadata, and optional
+            cryptographic signatures.
+            </p>
+
+            <p>
+            DEX artifacts allow teams to share transformation plans safely between machines
+            or environments.
+            </p>
+
+            <h3>What is inside a DEX file?</h3>
+
+            <p>
+            Internally a DEX file is a deterministic <code>tar.gz</code> archive containing:
+            </p>
+
+            <ul>
+            <li>manifest.json (metadata)</li>
+            <li>payload/plan.json (the transformation plan)</li>
+            <li>signatures/ (optional public keys)</li>
+            </ul>
+
+            <h3>Can I inspect a DEX artifact manually?</h3>
+
+            <p>
+            Yes. DEX files are intentionally transparent.
+            You can rename them to <code>.tar.gz</code> and inspect them with standard tools.
+            </p>
+
+        </section>
+
+        <section class="section">
+            <h2>Security & Trust</h2>
+            <h3>Why does Dennis support signatures?</h3>
+
+            <p>
+            Signatures allow teams to verify that a transformation plan has not been altered.
+            A signed artifact can be validated before execution.
+            </p>
+
+            <h3>What cryptography does Dennis use?</h3>
+
+            <p>
+            Dennis uses the Ed25519 signature scheme through PyNaCl.
+            This algorithm is widely used and provides strong security with small keys.
+            </p>
+
+            <h3>What happens if a signature is invalid?</h3>
+
+            <p>
+            Dennis checks the authoritative signature (the most recent one).
+            </p>
+
+            <p>
+            If that signature fails but a previous signature is still valid,
+            Dennis warns the user and recommends re-signing the artifact.
+            </p>
+
+            <h3>Can signatures be replaced?</h3>
+
+            <p>
+            No. Signatures are append-only.
+            Historical signatures remain part of the artifact to preserve provenance.
+            </p>
+
+            <h3>Why should I trust Dennis with my life's work?</h3>
+            <p>
+            You shouldn't blindly trust Dennis.
+            Dennis is designed so that you don't have to.
+            </p>
+
+            <p>
+            Every transformation Dennis performs is based on a deterministic plan
+            that you can inspect before execution. Nothing happens automatically
+            or behind the scenes.
+            </p>
+
+            <p>
+            Plans are human-readable JSON documents. You can review them manually,
+            export them, edit them, store them in Git, or discard them entirely.
+            </p>
+
+            <p>
+            When packaged as a DEX artifact, the plan can also be cryptographically
+            signed and verified before it is applied.
+            </p>
+
+            <p>
+            This means that Dennis does not ask for trust. It provides transparency,
+            reproducibility, and verification mechanisms so that trust can be built
+            through inspection.
+            </p>
+
+            <p>
+            If you can see the plan, you control the change.
+            </p>
+            <p>
+            Dennis does not modify your code until you explicitly tell it to.
+            The plan is always the source of truth.
+            </p>
+
+            <h3>What prevents Dennis from corrupting my codebase?</h3>
+            <p>
+            Dennis does not modify your code immediately.
+            Every change is first expressed as a deterministic plan that can be
+            reviewed before execution.
+            </p>
+
+            <p>
+            The plan lists every file, line, and transformation that will occur.
+            If something looks incorrect, you can edit or discard the plan before
+            any modification happens.
+            </p>
+
+            <p>
+            Because the plan is the source of truth, changes are predictable and
+            reproducible. Nothing is executed implicitly.
+            </p>
+
+            <p>
+            In addition, plans can generate inverse operations,
+            allowing transformations to be reversed if necessary.
+            </p>
+
+            <h3>Is Dennis deterministic across machines? Does it require an internet connection?</h3>
+            <p>
+            Yes. Dennis is designed to produce deterministic results across machines.
+            Given the same codebase and dictionary, Dennis will generate the same
+            transformation plan.
+            </p>
+
+            <p>
+            Dennis also runs entirely locally. The CLI does not require an internet
+            connection or any external service in order to scan projects, generate plans,
+            or apply transformations.
+            </p>
+
+            <p>
+            This makes Dennis suitable for restricted environments, air-gapped systems,
+            and teams that prefer to keep their source code fully under their control.
+            </p>
+
+            <p>
+            Plans and DEX artifacts are portable, so they can be stored in Git,
+            shared between machines, or reviewed offline.
+            </p>
+
+            <p>
+            Dennis never transmits your source code anywhere unless you explicitly
+            choose to export or share an artifact.
+            </p>
+
+        </section>
+
+        <section class="section">
+            <h2>Workflow</h2>
+            <h3>What does a typical Dennis workflow look like?</h3>
+
+            <pre>
+            scan → plan → dex → sign → verify → apply
+            </pre>
+
+            <p>
+            This workflow ensures that transformations remain inspectable and reversible.
+            </p>
+
+            <h3>Do I need the web interface?</h3>
+
+            <p>
+            No. Dennis is CLI-first.
+            Everything can be done locally using the command line.
+            </p>
+
+            <h3>Can Dennis undo changes?</h3>
+
+            <p>
+            Yes. Dennis plans are reversible by design.
+            Inverse plans can be generated to undo transformations.
+            </p>
+
+            </section>
+
+            <section class="section">
+
+            <h2>Open Source</h2>
+
+            <h3>Is Dennis open source?</h3>
+
+            <p>
+            Yes. Dennis is released under the MIT license.
+            The CLI and core engine will always remain open.
+            </p>
+
+            <h3>Will Dennis become a SaaS?</h3>
+
+            <p>
+            Possibly. A hosted forge may exist in the future for collaboration
+            and artifact sharing, but the deterministic core will remain open source.
+            </p>
+
+            <h3>Can I self-host Dennis?</h3>
+
+            <p>
+            Yes. The CLI runs locally and does not require any external service.
+            </p>
+
+            <h3>Why not just use a regex script or sed?</h3>
+            <p>
+            For small changes, a quick script may be enough.
+            However, large transformations across many files quickly become difficult
+            to audit and maintain.
+            </p>
+
+            <p>
+            Traditional scripts execute immediately and often provide little visibility
+            into what will change beforehand.
+            </p>
+
+            <p>
+            Dennis separates the planning stage from the execution stage.
+            You can generate a transformation plan, inspect it, modify it,
+            and only then apply it.
+            </p>
+
+            <p>
+            This approach reduces risk when working with large or critical codebases.
+            </p>
+
+            
+
+        </section>
+
+            <section class="section">
+                <h2>Future Development</h2>
+                <h3>Will Dennis support other languages?</h3>
+
+                <p>
+                The current version focuses on Python workflows, but the architecture
+                is designed to support additional language scanners in the future.
+                </p>
+
+                <h3>Will plugins be supported?</h3>
+
+                <p>
+                Future versions may support scanner plugins for different ecosystems
+                such as PHP, JavaScript, or React.
+                </p>
+
+                <h3>Is Dennis stable?</h3>
+
+                <p>
+                Dennis is evolving, but the artifact format and deterministic principles
+                are designed to remain stable over time.
+                </p>
+                
+
+            </section>
+
+            <section class="section">
+
+            <h2>Philosophy</h2>
+
+            <blockquote>
+            “An archive is not merely a place where truths are stored.
+            It is a machine built so that tomorrow may still trust yesterday.”
+            </blockquote>
+
+            <p>
+            Dennis exists to make large code transformations safer, clearer,
+            and more accountable.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

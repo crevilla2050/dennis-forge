@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <title>Dennis the Forge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dennis Forge is a deterministic codemod engine for Git-native projects. Generate human-reviewable transformation plans you can inspect, export, replay, and undo." />
+  <meta name="description" content="Dennis Forge is a deterministic codemod engine for Git-native projects. Deterministic codemods and signed transformation artifacts (DEX) for Git-native projects. Plan, review, sign, and safely apply large code changes." />
   <meta name="keywords" content="codemods, deterministic refactoring, git transformations, developer tools, code migration, static analysis, CLI tools" />
-  <meta name="author" content="Carlos Revilla" />
+  <meta name="author" content="Carlos Revilla - carlos.revilla.m@gmail.com" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0f1416" />
 
@@ -84,6 +84,7 @@
             <a href="#oss"><i class="bi bi-code-square"></i><span>CLI & Open Source</span></a>
             <a href="#cloud"><i class="bi bi-cloud"></i><span>Self-Host / Cloud</span></a>
             <a href="#why"><i class="bi bi-question-circle"></i><span>Why Dennis?</span></a>
+            <a href="faq.html"><i class="bi bi-patch-question"></i><span>FAQ</span></a>
         </nav>
     </div>
   </aside>
@@ -99,12 +100,17 @@
 
         <p>
           Dennis Forge is a deterministic transformation engine for Git-native projects.
-          Generate human-reviewable plans you can inspect, export, replay, and undo.
+          Generate human-reviewable plans, package them as signed artifacts (DEX),
+          and apply large code changes safely.
           No magic. No lock-in. Just control.
         </p>
 
         <div class="cta">
+<<<<<<< HEAD
           <a href="https://github.com/crevilla2050/string-audit" class="btn primary">View on GitHub</a>
+=======
+          <a href="https://github.com/crevilla2050/dennis-forge" class="btn primary">View Source on GitHub</a>
+>>>>>>> c97e00b (Updated for version 0.3.0)
           <a href="#quickstart" class="btn secondary">Quick Start</a>
         </div>
       </div>
@@ -149,7 +155,10 @@
 
       <div class="demo-box">
         <code>pipx install dennis</code><br>
-        <code>dennis plan ./your-project</code>
+        <code>dennis plan ./project --dict en.json</code><br>
+        <code>dennis dex pack plan.json artifact.dex</code><br>
+        <code>dennis dex sign artifact.dex --key dev.key</code><br>
+        <code>dennis dex verify artifact.dex</code>
       </div>
 
       <p>
@@ -165,11 +174,12 @@
         </p>
 
         <ul class="flow">
-            <li><strong>Plan</strong> — Generate a deterministic transformation plan</li>
-            <li><strong>Review</strong> — Inspect or edit it as JSON or CSV</li>
-            <li><strong>Validate</strong> — Ensure structural correctness</li>
-            <li><strong>Apply</strong> — Execute changes safely</li>
-            <li><strong>Undo</strong> — Revert instantly if needed</li>
+          <li><strong>Scan</strong> — Analyze the codebase for transformation targets</li>
+          <li><strong>Plan</strong> — Generate a deterministic transformation plan</li>
+          <li><strong>Package</strong> — Bundle the plan into a portable DEX artifact</li>
+          <li><strong>Sign</strong> — Cryptographically sign the artifact</li>
+          <li><strong>Verify</strong> — Validate signatures before execution</li>
+          <li><strong>Apply</strong> — Execute transformations safely</li>
         </ul>
 
         <p>
@@ -247,12 +257,31 @@
             while maintaining control over their data.
         </p>
     </section>
+<<<<<<< HEAD
     <footer>
       Forged slowly. Built for trust.<br />
       MIT Licensed · 15% of future Dennis income will be donated to UNICEF<br />
       Dennis the Forge © Carlos Revilla 2026
       <a href="https://github.com/crevilla2050/string-audit">Source on GitHub</a>
     </footer>
+=======
+    <section class="section">
+      <h2>Philosophy</h2>
+
+      <blockquote>
+      “An archive is not merely a place where truths are stored.
+      It is a machine built so that tomorrow may still trust yesterday.”
+      </blockquote>
+
+    </section>
+<footer>
+  Forged slowly. Built for trust.<br />
+  MIT Licensed · 15% of future Dennis income will be donated to UNICEF<br />
+  Dennis the Forge © Carlos Revilla 2026 ·
+  <a href="faq.html">FAQ</a> ·
+  <a href="https://github.com/crevilla2050/string-audit">Source on GitHub</a>
+</footer>
+>>>>>>> c97e00b (Updated for version 0.3.0)
   </main>
 </div>
 <script>
