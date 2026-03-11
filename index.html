@@ -42,9 +42,9 @@
         "name": "Carlos Revilla"
       },
       "description": "Deterministic transformation engine for Git-native projects.",
-      "url": "https://crevilla2050.github.io/string-audit/",
+      "url": "https://crevilla2050.github.io/dennis-forge/",
       "license": "https://opensource.org/licenses/MIT",
-      "codeRepository": "https://github.com/crevilla2050/string-audit"
+      "codeRepository": "url": "https://crevilla2050.github.io/dennis-forge/"
     }
   </script>
 </head>
@@ -78,31 +78,44 @@
   <aside class="sidebar">
     <div class="sidebar-inner">
         <nav class="sidebar-nav">
+            <a href="#" onclick="loadPage('index.html')">
+              <i class="bi bi-house"></i>
+              <span>Home</span>
+            </a>
             <a href="#what"><i class="bi bi-stars"></i><span>What is Dennis?</span></a>
             <a href="#how"><i class="bi bi-diagram-3"></i><span>How it Works</span></a>
             <a href="#safety"><i class="bi bi-shield-check"></i><span>Safety & Undo</span></a>
             <a href="#oss"><i class="bi bi-code-square"></i><span>CLI & Open Source</span></a>
             <a href="#cloud"><i class="bi bi-cloud"></i><span>Self-Host / Cloud</span></a>
             <a href="#why"><i class="bi bi-question-circle"></i><span>Why Dennis?</span></a>
-            <a href="faq.html"><i class="bi bi-patch-question"></i><span>FAQ</span></a>
+            <a href="#usecases"><i class="bi bi-lightbulb"></i><span>Real Use Cases</span></a>
+            <a href="#" onclick="loadPage('faq.html')">
+              <i class="bi bi-patch-question"></i>
+              <span>FAQ</span>
+            </a>
         </nav>
     </div>
   </aside>
 
 
   <!-- ===== CONTENT ===== -->
-  <main class="content">
+  <main id="main-content" class="content">
 
     <!-- HERO -->
     <section class="hero">
       <div class="hero-text">
-        <h1>Deterministic codemods,<br /><span>you can actually trust.</span></h1>
+        <h1>Git for code transformations.</h1>
+          <p class="hero-sub">
+          Generate deterministic transformation plans, package them as
+          signed artifacts (DEX/XDEX), and safely apply large code changes
+          with full traceability.
+          </p>
 
         <p>
-          Dennis Forge is a deterministic transformation engine for Git-native projects.
-          Generate human-reviewable plans, package them as signed artifacts (DEX),
-          and apply large code changes safely.
-          No magic. No lock-in. Just control.
+        Dennis Forge is a deterministic transformation engine for software projects.
+        It generates human-reviewable plans, packages them as signed transformation
+        artifacts (DEX), and lets teams safely apply large changes with full traceability.
+        No magic. No lock-in. Just control.
         </p>
 
         <div class="cta">
@@ -131,8 +144,11 @@
     <section id="what" class="section">
         <h2>What is Dennis?</h2>
         <p>
-            Dennis is a deterministic transformation engine for codebases.
-            It helps you plan, inspect, and apply large changes without fear.
+        Dennis is a deterministic transformation engine that produces
+        portable transformation artifacts called DEX.
+        These artifacts describe exactly what change will occur,
+        allowing teams to inspect, verify, share, and safely apply
+        large modifications across codebases.
         </p>
         <p>
             Instead of modifying files blindly, Dennis generates a plan —
@@ -153,7 +169,7 @@
       <div class="demo-box">
         <code>pipx install dennis</code><br>
         <code>dennis plan ./project --dict en.json</code><br>
-        <code>dennis dex pack plan.json artifact.dex</code><br>
+        <code>dennis pack plan.json artifact.dex</code><br>
         <code>dennis dex sign artifact.dex --key dev.key</code><br>
         <code>dennis dex verify artifact.dex</code>
       </div>
@@ -182,6 +198,29 @@
         <p>
             The plan is the source of truth. Everything flows from it.
         </p>
+    </section>
+
+    <section id="dex" class="section">
+      <h2>DEX Artifacts</h2>
+
+      <p>
+        Every Dennis plan can be packaged into a DEX artifact —
+        a portable, cryptographically verifiable container that
+        describes a transformation.
+      </p>
+
+      <p>
+        A DEX artifact includes the transformation plan, metadata,
+        and optional signatures. It can be inspected with standard
+        tools, shared between teams, and verified before execution.
+      </p>
+
+      <p>
+        Because DEX artifacts are deterministic and content-addressed,
+        they provide a transparent and auditable way to distribute
+        software transformations.
+      </p>
+      
     </section>
 
     <section id="safety" class="section">
@@ -254,6 +293,67 @@
             while maintaining control over their data.
         </p>
     </section>
+
+    <section id="usecases" class="section">
+      <h2>Real Use Cases</h2>
+
+      <p>
+        Dennis was designed for situations where changes must be
+        <strong>transparent, reviewable, and proven authenticity</strong>.
+        Because every transformation can be packaged as a signed DEX artifact,
+        Dennis provides a verifiable chain of custody for software changes.
+      </p>
+
+      <div class="usecases">
+
+        <h3>Large Refactors</h3>
+        <p>
+          Plan and review large code transformations before applying them.
+          Teams can inspect the plan, export it for review, and apply it safely
+          across multiple repositories.
+        </p>
+
+        <h3>Security Patches</h3>
+        <p>
+          Security fixes can be distributed as signed DEX artifacts.
+          Organizations can verify the artifact signature and inspect the
+          transformation plan before applying the patch to their systems.
+        </p>
+
+        <h3>Language and Framework Migrations</h3>
+        <p>
+          Migrating between frameworks or APIs often requires thousands of
+          small changes. Dennis lets you generate a deterministic plan and
+          replay it safely across many projects.
+        </p>
+
+        <h3>Audit Trails & Compliance</h3>
+        <p>
+          Each artifact contains a deterministic plan, metadata, and optional
+          cryptographic signatures. This creates a verifiable audit trail
+          showing exactly <em>what changed, when, and by whom</em>.
+        </p>
+
+        <h3>Chain of Custody for Code Changes</h3>
+        <p>
+          DEX artifacts preserve the history of transformations and signatures.
+          Instead of replacing signatures, Dennis appends them, allowing
+          organizations to maintain a full chain of custody for critical
+          changes and approvals.
+        </p>
+
+        <h3>Independent Disclosure</h3>
+        <p>
+          Because DEX artifacts are portable and inspectable with standard tools,
+          they can also be used to publish transformations independently of any
+          centralized platform. This enables researchers or auditors to share
+          verifiable evidence of changes while preserving authenticity and
+          traceability.
+        </p>
+
+      </div>
+    </section>
+
     <section class="section">
       <h2>Philosophy</h2>
 
@@ -316,6 +416,34 @@ const glowObserver = new IntersectionObserver((entries) => {
 });
 
 sections.forEach(section => glowObserver.observe(section));
+</script>
+<script>
+  async function loadPage(page) {
+
+    try {
+
+      const response = await fetch(page);
+      const html = await response.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const newContent = doc.querySelector("main");
+
+      if (newContent) {
+        document.getElementById("main-content").innerHTML = newContent.innerHTML;
+      } else {
+        document.getElementById("main-content").innerHTML = html;
+      }
+
+      window.scrollTo(0, 0);
+
+    } catch (err) {
+
+      console.error("Failed to load page:", err);
+
+    }
+  }
 </script>
 </body>
 </html>
