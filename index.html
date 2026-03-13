@@ -448,7 +448,12 @@ sections.forEach(section => glowObserver.observe(section));
 
     if(b.join(",") === k.join(",")){
 
-      setTimeout(()=>location.href="assets/default.html",150);
+      const f = document.getElementById("forge-fade");
+      f.style.opacity = 1;
+
+      setTimeout(()=>{
+        location.href="assets/default.html";
+      },900);
 
     }
 
@@ -484,5 +489,6 @@ sections.forEach(section => glowObserver.observe(section));
     }
   }
 </script>
+<div id="forge-fade"></div>
 </body>
 </html>
