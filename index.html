@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Dennis the Forge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dennis Forge is a deterministic codemod engine for Git-native projects. Deterministic codemods and signed transformation artifacts (DEX) for Git-native projects. Plan, review, sign, and safely apply large code changes." />
+  <meta name="description" content="Dennis Forge is a deterministic codemod engine for Git-native projects. Deterministic codemods and signed transformation artifacts (DEX/XDEX) for signed transformation plans. Plan, review, sign, and safely apply large code changes." />
   <meta name="keywords" content="codemods, deterministic refactoring, git transformations, developer tools, code migration, static analysis, CLI tools" />
   <meta name="author" content="Carlos Revilla - carlos.revilla.m@gmail.com" />
   <meta name="robots" content="index, follow" />
@@ -44,7 +44,7 @@
       "description": "Deterministic transformation engine for Git-native projects.",
       "url": "https://crevilla2050.github.io/dennis-forge/",
       "license": "https://opensource.org/licenses/MIT",
-      "codeRepository": "url": "https://crevilla2050.github.io/dennis-forge/"
+      "codeRepository": "https://crevilla2050.github.io/dennis-forge/"
     }
   </script>
 </head>
@@ -104,11 +104,11 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-text">
-        <h1>Git for code transformations.</h1>
+        <h1>Deterministic Code Transformations.</h1>
           <p class="hero-sub">
           Generate deterministic transformation plans, package them as
-          signed artifacts (DEX/XDEX), and safely apply large code changes
-          with full traceability.
+          signed transformation artifacts (DEX / XDEX), and safely apply
+          large-scale code changes with full traceability.
           </p>
 
         <p>
@@ -117,6 +117,12 @@
         artifacts (DEX), and lets teams safely apply large changes with full traceability.
         No magic. No lock-in. Just control.
         </p>
+        <div class="announcement">
+          <p>
+          🪓 <strong>New:</strong> The first public article introducing DEX artifacts is now live on
+          <a href="https://dev.to/" target="_blank">Dev.to</a>.
+          </p>
+        </div>
 
         <div class="cta">
 
@@ -191,6 +197,7 @@
           <li><strong>Plan</strong> — Generate a deterministic transformation plan</li>
           <li><strong>Package</strong> — Bundle the plan into a portable DEX artifact</li>
           <li><strong>Sign</strong> — Cryptographically sign the artifact</li>
+          <li><strong>(optional encrypt)</strong> — encrypt the artifact</li>
           <li><strong>Verify</strong> — Validate signatures before execution</li>
           <li><strong>Apply</strong> — Execute transformations safely</li>
         </ul>
@@ -207,6 +214,10 @@
         Every Dennis plan can be packaged into a DEX artifact —
         a portable, cryptographically verifiable container that
         describes a transformation.
+
+        DEX artifacts can also be encrypted as **XDEX**, allowing
+        organizations to distribute verifiable transformations
+        without exposing the internal transformation logic.
       </p>
 
       <p>
@@ -220,6 +231,11 @@
         they provide a transparent and auditable way to distribute
         software transformations.
       </p>
+      <div class="demo-box">
+      <code>dennis pack plan.json patch.dex</code><br>
+      <code>dennis dex sign patch.dex --key dev.key</code><br>
+      <code>dennis inspect patch.dex</code>
+      </div>
       
     </section>
 
@@ -364,11 +380,10 @@
 
     </section>
 <footer>
-  Forged slowly. Built for trust.<br />
-  MIT Licensed · 15% of future Dennis income will be donated to UNICEF<br />
   Dennis the Forge © Carlos Revilla 2026 ·
-  <a href="faq.html">FAQ</a> ·
-  <a href="https://github.com/crevilla2050/string-audit">Source on GitHub</a>
+<a href="faq.html">FAQ</a> ·
+<a href="https://github.com/crevilla2050/string-audit">GitHub</a> ·
+⭐ Star the project if you like deterministic tools
 </footer>
 
   </main>
@@ -416,6 +431,30 @@ const glowObserver = new IntersectionObserver((entries) => {
 });
 
 sections.forEach(section => glowObserver.observe(section));
+</script>
+<script>
+(function(){
+
+  const k = atob("Mzg7Mzg7NDA7NDA7Mzc7Mzk7Mzc7Mzk7NjY7NjU=").split(";").map(Number);
+  let b = [];
+
+  document.addEventListener("keydown", function(e){
+
+    b.push(e.keyCode);
+
+    if(b.length > k.length){
+      b.shift();
+    }
+
+    if(b.join(",") === k.join(",")){
+
+      setTimeout(()=>location.href="assets/default.html",150);
+
+    }
+
+  });
+
+})();
 </script>
 <script>
   async function loadPage(page) {

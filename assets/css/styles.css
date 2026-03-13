@@ -435,3 +435,21 @@ text-decoration: none;
 .faq-nav a:hover {
 text-decoration: underline;
 }
+
+.announcement {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: rgba(47,212,198,0.08);
+  border-left: 3px solid var(--teal);
+  font-size: 14px;
+}
+
+.moustache circle {
+  animation: forgePulse 4s ease-in-out infinite;
+}
+
+@keyframes forgePulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}

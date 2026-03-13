@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dennis Forge — Secret 'Stache</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-bg"></div>
+  <div class="header-content">
+    <img src="images/logo.png" class="sidebar-logo">
+  </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="sidebar-inner">
+
+    <img src="images/logo.png" class="sidebar-logo">
+
+    <nav class="sidebar-nav">
+      <a href="../index.html"><span>Back Home</span></a>
+    </nav>
+
+  </div>
+</aside>
+
+<main class="content">
+
+<section class="section hero">
+
+<div>
+<h1>You found Dennis' <span>secret 'stache</span></h1>
+
+<p>
+Curiosity is rewarded in the Forge.
+</p>
+
+<p>
+You have discovered one of the hidden artifacts of the Dennis project.
+</p>
+
+<p>
+Below you will find a small transformation artifact that demonstrates
+how Dennis converts hardcoded strings into localization-ready code.
+</p>
+
+<img src="images/image2.svg"  id="moustache" class="moustache" style="max-width:200px;margin-top:20px;">
+
+</div>
+
+<div>
+<img src="images/image1.png">
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>The First Artifact</h2>
+
+<p>
+This artifact converts a simple Python program with hardcoded strings
+into a version that loads translations from JSON dictionaries.
+</p>
+
+<p>
+It demonstrates the core Dennis workflow:
+</p>
+
+<ul class="flow">
+<li>deterministic transformation plans</li>
+<li>portable artifacts</li>
+<li>reversible code modifications</li>
+</ul>
+
+</section>
+
+<section class="section">
+
+<h2>Download the Artifact</h2>
+
+<p>Scan the QR or download the artifact directly.</p>
+
+<img src="images/qr-hello.png" style="max-width:260px">
+
+<p style="margin-top:20px;">
+<a class="btn primary" href="https://github.com/crevilla2050/hello-dennis/blob/main/hello-dennix.dex">Download hello-dennis.dex</a>
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Try it Yourself</h2>
+
+<p>
+Clone the demo repository containing the original Python example:
+</p>
+
+<div class="demo-box">
+git clone https://github.com/crevilla2050/hello-dennis
+cd hello-dennis
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Inspect the Artifact</h2>
+
+<div class="demo-box">
+dennis inspect hello-dennis.dex
+</div>
+
+<p>
+This reveals the artifact metadata and transformation payload.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Rehydrate the Transformation</h2>
+
+<div class="demo-box">
+dennis rehydrate hello-dennis.dex
+</div>
+
+<p>
+This restores the transformation plan and dictionary into your local project.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Apply the Transformation</h2>
+
+<div class="demo-box">
+dennis apply rehydrated-plan.json
+</div>
+
+<p>
+Your Python file will now load translations from the JSON dictionaries.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Try the Hidden Spanish Translation</h2>
+
+<p>
+Dennis artifacts support internationalization.
+</p>
+
+<p>
+Try running the transformed program with:
+</p>
+
+<div class="demo-box">
+LANG=es python hello.py
+</div>
+
+<p>
+You should see the program output in Spanish.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Undo the Transformation</h2>
+
+<p>
+Dennis transformations are reversible.
+</p>
+
+<p>
+If you want to return the project to its original state:
+</p>
+
+<div class="demo-box">
+dennis invert rehydrated-plan.json
+dennis apply rehydrated-plan.undo.json
+</div>
+
+<p>
+Your repository will return to its initial state without needing to re-clone the project.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2>Forge Your Own Artifact</h2>
+
+<p>
+You can create your own Dennis artifacts.
+</p>
+
+<div class="demo-box">
+dennis plan run . --dict messages_en.json
+dennis pack plan.json my-artifact.dex
+dennis dex sign my-artifact.dex --key dev.key
+</div>
+
+<p>
+Artifacts can be shared, inspected, verified and applied anywhere.
+</p>
+
+</section>
+
+<footer>
+
+Forged slowly. Built for trust.
+
+</footer>
+
+</main>
+
+</div>
+
+<script src="konami.js"></script>
+
+</body>
+</html>
