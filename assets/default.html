@@ -69,7 +69,7 @@ into a version that loads translations from JSON dictionaries.
 </p>
 
 <p>
-It demonstrates the core Dennis workflow:
+It demonstrates the deterministic transformation pipeline:
 </p>
 
 <ul class="flow">
@@ -119,6 +119,9 @@ dennis inspect hello-dennis.dex
 
 <p>
 This reveals the artifact metadata and transformation payload.
+</p>
+<p>
+Even hidden artifacts carry lineage.
 </p>
 
 </section>
@@ -212,6 +215,9 @@ dennis dex sign my-artifact.dex --key dev.key
 
 <p>
 Artifacts can be shared, inspected, verified and applied anywhere.
+</p>
+<p class="muted">
+Artifact verified. Lineage intact.
 </p>
 
 </section>

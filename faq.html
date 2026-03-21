@@ -68,6 +68,30 @@ This guarantees reproducibility and allows plans to be reviewed,
 stored, and verified safely.
 </p>
 
+<h3>What is the decision layer?</h3>
+
+<p>
+Before generating a transformation plan, Dennis evaluates whether
+extracted content is meaningful. This decision layer filters out noise
+such as SQL fragments, CSS classes, identifiers, and code artifacts.
+</p>
+
+<p>
+This ensures that DEX artifacts represent meaningful transformations,
+not raw extraction.
+</p>
+
+<h3>What is lineage?</h3>
+
+<p>
+Lineage is the chain of transformations recorded across artifacts.
+Each step includes hashes and metadata linking it to the previous state.
+</p>
+
+<p>
+This creates a verifiable history where transformations can be traced,
+audited, and validated over time.
+</p>
 
 <h3>Why the name “Dennis the Forge”?</h3>
 
@@ -96,7 +120,7 @@ C programming language and one of the architects of modern computing.
 <h3>What is a DEX artifact?</h3>
 
 <p>
-DEX stands for <strong>Dennis EXchange artifact</strong>.
+DEX stands for <strong>Deterministic EXchange artifact</strong>.
 </p>
 
 <p>

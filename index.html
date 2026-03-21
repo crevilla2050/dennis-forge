@@ -104,11 +104,12 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-text">
-        <h1>Deterministic Code Transformations.</h1>
+        <h1>Deterministic Transformations. Trusted Results.</h1>
+
           <p class="hero-sub">
-          Generate deterministic transformation plans, package them as
-          signed transformation artifacts (DEX / XDEX), and safely apply
-          large-scale code changes with full traceability.
+          Generate deterministic transformation plans, decide what actually matters,
+          package them as signed artifacts (DEX), and safely apply large-scale changes
+          with full traceability and lineage.
           </p>
 
         <p>
@@ -117,6 +118,13 @@
         artifacts (DEX), and lets teams safely apply large changes with full traceability.
         No magic. No lock-in. Just control.
         </p>
+        
+        <p>
+        DEX stands for <strong>Deterministic EXchange artifact</strong>.
+          Dennis doesn't just extract changes.
+        It decides what is meaningful first.
+        </p>
+
         <div class="announcement">
           <p>
           🪓 <strong>New:</strong> The first public article introducing DEX artifacts is now live on
@@ -157,6 +165,11 @@
         large modifications across codebases.
         </p>
         <p>
+        Dennis includes a deterministic decision layer that separates meaningful
+        human content from noise (SQL, CSS, identifiers, code artifacts).
+        This ensures that transformations are built on signal, not garbage.
+        </p>
+        <p>
             Instead of modifying files blindly, Dennis generates a plan —
             a human-readable document that shows exactly what will change,
             before anything is applied.
@@ -193,13 +206,14 @@
         </p>
 
         <ul class="flow">
-          <li><strong>Scan</strong> — Analyze the codebase for transformation targets</li>
-          <li><strong>Plan</strong> — Generate a deterministic transformation plan</li>
-          <li><strong>Package</strong> — Bundle the plan into a portable DEX artifact</li>
+          <li><strong>Scan</strong> — Analyze the codebase</li>
+          <li><strong>Decide</strong> — Filter signal from noise (Clean Engine)</li>
+          <li><strong>Plan</strong> — Generate deterministic transformation plan</li>
+          <li><strong>Package</strong> — Bundle into DEX artifact</li>
           <li><strong>Sign</strong> — Cryptographically sign the artifact</li>
-          <li><strong>(optional encrypt)</strong> — encrypt the artifact</li>
-          <li><strong>Verify</strong> — Validate signatures before execution</li>
-          <li><strong>Apply</strong> — Execute transformations safely</li>
+          <li><strong>(optional encrypt)</strong> — encrypt as XDEX</li>
+          <li><strong>Verify</strong> — Validate signatures</li>
+          <li><strong>Apply</strong> — Execute safely</li>
         </ul>
 
         <p>
@@ -236,6 +250,16 @@
       <code>dennis dex sign patch.dex --key dev.key</code><br>
       <code>dennis inspect patch.dex</code>
       </div>
+
+      <p>
+      DEX artifacts are not just containers.
+      They are deterministic, inspectable, and verifiable representations of change.
+      </p>
+
+      <p>
+      Each artifact is linked through lineage — forming a verifiable chain of
+      transformations where every step is hashed and traceable.
+      </p>
       
     </section>
 
@@ -253,6 +277,10 @@
         <p>
             This makes Dennis suitable for large refactors,
             legacy systems, and high-trust environments.
+        </p>
+        <p>
+        Because transformations are deterministic and artifacts carry lineage,
+        every change can be traced, verified, and audited.
         </p>
     </section>
 
@@ -365,6 +393,12 @@
           centralized platform. This enables researchers or auditors to share
           verifiable evidence of changes while preserving authenticity and
           traceability.
+        </p>
+
+        <h3>Forensic Traceability</h3>
+        <p>
+        Track transformations across time. Every artifact records its origin,
+        making it possible to verify not only what changed, but how it evolved.
         </p>
 
       </div>
