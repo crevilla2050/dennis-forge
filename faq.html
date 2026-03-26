@@ -97,7 +97,7 @@ audited, and validated over time.
 
 <p>
 A forge is a place where things are crafted deliberately.
-Nothing happens accidentally. Every step is visible. And the final pruduct is immutable and verifiable.
+Nothing happens accidentally. Every step is visible. And the final product is immutable and verifiable.
 </p>
 
 <p>
@@ -108,6 +108,22 @@ reviewed, and executed intentionally.
 <p>
 The name also honors <strong>Dennis Ritchie</strong>, co-creator of the
 C programming language and one of the architects of modern computing.
+</p>
+
+<h3>Can Dennis be used in CI/CD pipelines?</h3>
+
+<p>
+Yes.
+</p>
+
+<p>
+Because plans and artifacts are deterministic,
+they can be generated, verified, and applied in automated environments.
+</p>
+
+<p>
+This enables workflows where transformations are validated
+before being applied in production systems.
 </p>
 
 </section>
@@ -179,6 +195,60 @@ remain private.
 </p>
 <p>
 Transparency is a design goal of the format.
+</p>
+
+<h3>How is Dennis different from codemods or AST-based tools?</h3>
+
+<p>
+Traditional codemods and AST tools focus on executing transformations directly.
+They operate on code structures but typically lack a formal planning layer.
+</p>
+
+<p>
+Dennis introduces a separation between planning and execution.
+It generates a deterministic plan first, which can be reviewed,
+verified, and shared before any change is applied.
+</p>
+
+<p>
+The focus is not only on how to transform code,
+but on making transformations inspectable and reproducible.
+</p>
+
+<h3>Where are DEX artifacts stored?</h3>
+
+<p>
+DEX artifacts are portable files.
+</p>
+
+<p>
+They can be stored in Git repositories, artifact registries,
+local storage, or shared directly between teams.
+</p>
+
+<p>
+Dennis does not require a central service to function.
+</p>
+
+<p>
+All users' artifacts for http://dennis-forge.com/repo/ are uploaded and stored in the Dennis cloud storage service.
+We have no access to the contents of the DEX artifacts themselves, just an Index for easy search & download of those Artifacts marked as "Public"
+</p>
+
+<h3>Does the hosted service replace the CLI?</h3>
+
+<p>
+No.
+</p>
+
+<p>
+The CLI remains the primary and fully capable interface.
+The hosted service, https://dennis-forge.com/repo/ is an additional layer for collaboration,
+inspection, and artifact sharing.
+</p>
+
+<p>
+All core functionality remains available locally.
 </p>
 
 </section>
@@ -253,6 +323,42 @@ This also allows independent researchers or auditors to publish
 verifiable artifacts describing transformations or evidence
 without relying on centralized infrastructure.
 </p>
+
+<h3>What are the current limitations?</h3>
+
+<p>
+Dennis focuses on deterministic transformations.
+It does not attempt to interpret runtime behavior or dynamic execution.
+</p>
+
+<p>
+Its effectiveness depends on the quality of the scanner
+and the transformation definitions provided.
+</p>
+
+<p>
+Like any tool, it should be used with review and validation,
+especially in critical systems.
+</p>
+
+<h3>Who is Dennis designed for?</h3>
+
+<p>
+Dennis is designed for engineers and teams working with
+large or complex codebases where changes must be controlled,
+reviewable, and reproducible.
+</p>
+
+<p>
+It is especially useful in environments involving:
+</p>
+
+<ul>
+<li>large refactors</li>
+<li>system migrations</li>
+<li>security patches</li>
+<li>auditable workflows</li>
+</ul>
 
 </section>
 

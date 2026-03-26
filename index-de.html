@@ -54,33 +54,35 @@
 <header class="site-header">
   <div class="header-bg"></div>
 
- <div class="header-content">
+  <div class="header-content">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
 
-  <button class="sidebar-toggle" onclick="toggleSidebar()">
-    <i class="bi bi-list"></i>
-  </button>
+    <img src="assets/images/logo.png" class="sidebar-logo" />
 
-  <img src="assets/images/logo.png" class="sidebar-logo" />
-<div class="lang-switch">
-  <a href="index.html">EN</a>
-  <a href="index-es.html">ES</a>
-  <a href="index-de.html" class="active">DE</a>
-</div>
-</div>
+    <div class="lang-switch">
+      <a href="index.html">EN</a>
+      <a href="index-es.html">ES</a>
+      <a href="index-de.html" class="active">DE</a>
+    </div>
+  </div>
 </header>
 
 <div class="layout">
 
   <aside class="sidebar">
     <div class="sidebar-inner">
-        <nav class="sidebar-nav">
-            <a href="#what"><i class="bi bi-stars"></i><span>Was ist Dennis?</span></a>
-            <a href="#how"><i class="bi bi-diagram-3"></i><span>Wie es funktioniert</span></a>
-            <a href="#safety"><i class="bi bi-shield-check"></i><span>Sicherheit & Rückgängig</span></a>
-            <a href="#oss"><i class="bi bi-code-square"></i><span>CLI & Open Source</span></a>
-            <a href="#cloud"><i class="bi bi-cloud"></i><span>Self-Host oder Cloud</span></a>
-            <a href="#why"><i class="bi bi-question-circle"></i><span>Warum Dennis?</span></a>
-        </nav>
+      <nav class="sidebar-nav">
+        <a href="#what"><i class="bi bi-stars"></i><span>Was ist Dennis?</span></a>
+        <a href="#dex"><i class="bi bi-box"></i><span>DEX</span></a>
+        <a href="#how"><i class="bi bi-diagram-3"></i><span>Wie es funktioniert</span></a>
+        <a href="#usecases"><i class="bi bi-lightning"></i><span>Anwendungsfälle</span></a>
+        <a href="#safety"><i class="bi bi-shield-check"></i><span>Sicherheit</span></a>
+        <a href="#oss"><i class="bi bi-code-square"></i><span>CLI & Open Source</span></a>
+        <a href="#cloud"><i class="bi bi-cloud"></i><span>Lokal oder Cloud</span></a>
+        <a href="#why"><i class="bi bi-question-circle"></i><span>Warum Dennis?</span></a>
+      </nav>
     </div>
   </aside>
 
@@ -89,57 +91,88 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-text">
-        <h1>Deterministische Codemods,<br /><span>denen du vertrauen kannst.</span></h1>
+
+        <h1>Deterministische Transformationen.<br><span>Ergebnisse, denen du vertrauen kannst.</span></h1>
+
+        <p class="hero-sub">
+          Erzeuge deterministische Transformationspläne, entscheide was wirklich zählt,
+          verpacke sie als signierte Artefakte (DEX) und wende Änderungen in großem Maßstab
+          mit vollständiger Nachvollziehbarkeit an.
+        </p>
 
         <p>
-          Dennis Forge ist eine deterministische Transformations-Engine für Git-basierte Projekte.
-          Erzeuge prüfbare Pläne, die du inspizieren, exportieren, wiederverwenden und rückgängig machen kannst.
+          Dennis Forge ist eine deterministische Transformations-Engine für Softwareprojekte.
+          Sie erzeugt überprüfbare Pläne, verpackt sie als signierte Artefakte (DEX)
+          und ermöglicht sichere und nachvollziehbare Änderungen.
           Keine Magie. Kein Lock-in. Nur Kontrolle.
+        </p>
+
+        <p>
+          DEX steht für <strong>Deterministic EXchange artifact</strong>.
+          Dennis extrahiert nicht nur Änderungen — es entscheidet zuerst,
+          was überhaupt relevant ist.
         </p>
 
         <div class="cta">
           <a href="https://github.com/crevilla2050/dennis-forge" class="btn primary">GitHub</a>
           <a href="#quickstart" class="btn secondary">Schnellstart</a>
         </div>
+
       </div>
 
       <div class="hero-visual">
         <img src="assets/images/dennis-forge-hero.png" />
       </div>
     </section>
-    
-    <div class="saas-intent">
-      <p>
-        Dennis ist CLI-first und vollständig Open Source.
-        Das Forge-Konzept erweitert dies um portable, teilbare Pläne —
-        ohne den deterministischen Kern zu verändern.
-      </p>
-      <p class="muted">
-        Du kannst alles lokal ausführen. Immer.
-      </p>
-    </div>
 
+    <!-- WHAT -->
     <section id="what" class="section">
-        <h2>Was ist Dennis?</h2>
-        <p>
-            Dennis ist eine deterministische Transformations-Engine für Codebasen.
-            Sie hilft dir, große Änderungen sicher zu planen, zu prüfen und umzusetzen.
-        </p>
-        <p>
-            Statt Dateien blind zu verändern, erzeugt Dennis einen Plan —
-            ein lesbares Dokument, das exakt zeigt, was sich ändern wird,
-            bevor irgendetwas angewendet wird.
-        </p>
-        <p>
-            Jede Transformation ist prüfbar, exportierbar und umkehrbar.
-            Keine Blackboxes. Keine Magie. Nur Klarheit.
-        </p>
+      <h2>Was ist Dennis?</h2>
+
+      <p>
+        Dennis ist eine deterministische Transformations-Engine für Codebasen.
+        Sie hilft dir, komplexe Änderungen zu planen, zu inspizieren und sicher auszuführen.
+      </p>
+
+      <p>
+        Anstatt Dateien direkt zu verändern, erzeugt Dennis einen Plan —
+        ein lesbares Dokument, das genau beschreibt, was geändert wird.
+      </p>
+
+      <p>
+        Jede Transformation ist überprüfbar, exportierbar und reversibel.
+        Keine Blackboxes. Keine Magie. Nur Klarheit.
+      </p>
     </section>
 
+    <!-- DEX -->
+    <section id="dex" class="section">
+      <h2>DEX Artefakte</h2>
+
+      <p>
+        Jeder von Dennis erzeugte Plan kann als DEX-Artefakt verpackt werden —
+        ein portabler und kryptografisch überprüfbarer Container.
+      </p>
+
+      <p>
+        Artefakte können auch als XDEX verschlüsselt werden,
+        um Transformationen zu teilen, ohne interne Logik offenzulegen.
+      </p>
+
+      <p>
+        Ein DEX enthält den Plan, Metadaten und optionale Signaturen.
+        Er kann vor der Ausführung geprüft, geteilt und validiert werden.
+      </p>
+
+      <p>
+        Durch deterministisches Verhalten entsteht vollständige Nachvollziehbarkeit
+        und echte Auditierbarkeit.
+      </p>
+    </section>
+
+    <!-- QUICKSTART -->
     <section id="quickstart" class="section">
       <h2>Schnellstart</h2>
-
-      <p>Installiere Dennis global und erzeuge in Sekunden deinen ersten Plan.</p>
 
       <div class="demo-box">
         <code>pipx install dennis</code><br>
@@ -147,104 +180,109 @@
       </div>
 
       <p>
-        Dadurch entsteht ein deterministischer Transformationsplan,
-        den du sicher prüfen, exportieren, teilen und erneut anwenden kannst.
+        Erzeuge einen deterministischen Plan, den du inspizieren,
+        exportieren und sicher anwenden kannst.
       </p>
     </section>
 
+    <!-- HOW -->
     <section id="how" class="section">
-        <h2>Wie es funktioniert</h2>
-        <p>
-            Dennis folgt einem einfachen, transparenten Ablauf:
-        </p>
+      <h2>Wie Dennis funktioniert</h2>
 
-        <ul class="flow">
-            <li><strong>Planen</strong> — Einen deterministischen Transformationsplan erzeugen</li>
-            <li><strong>Prüfen</strong> — Als JSON oder CSV inspizieren oder bearbeiten</li>
-            <li><strong>Validieren</strong> — Struktur prüfen und absichern</li>
-            <li><strong>Anwenden</strong> — Änderungen sicher ausführen</li>
-            <li><strong>Rückgängig</strong> — Jederzeit sofort zurückrollen</li>
-        </ul>
+      <ul class="flow">
+        <li><strong>Scannen</strong> — Projekt analysieren</li>
+        <li><strong>Entscheiden</strong> — Signal von Rauschen trennen</li>
+        <li><strong>Planen</strong> — Deterministischen Plan erzeugen</li>
+        <li><strong>Verpacken</strong> — DEX Artefakt erstellen</li>
+        <li><strong>Signieren</strong> — Kryptografisch absichern</li>
+        <li><strong>(optional)</strong> — Verschlüsseln</li>
+        <li><strong>Verifizieren</strong> — Integrität prüfen</li>
+        <li><strong>Anwenden</strong> — Sicher ausführen</li>
+      </ul>
 
-        <p>
-            Der Plan ist die Quelle der Wahrheit. Alles basiert auf ihm.
-        </p>
+      <p>Der Plan ist die einzige Quelle der Wahrheit.</p>
     </section>
 
+    <!-- USE CASES -->
+    <section id="usecases" class="section">
+      <h2>Anwendungsfälle</h2>
+
+      <p>
+        Entwickelt für Umgebungen, in denen Änderungen überprüfbar und auditierbar sein müssen.
+      </p>
+
+      <h3>Große Refactorings</h3>
+      <p>Änderungen planen und prüfen, bevor sie angewendet werden.</p>
+
+      <h3>Sicherheitsupdates</h3>
+      <p>Verifizierbare, signierte Transformationen verteilen.</p>
+
+      <h3>Migrationen</h3>
+      <p>Wiederholbare Änderungen über mehrere Projekte hinweg.</p>
+
+      <h3>Audit & Compliance</h3>
+      <p>Vollständige Nachverfolgung aller Änderungen.</p>
+    </section>
+
+    <!-- SAFETY -->
     <section id="safety" class="section">
-        <h2>Sicherheit & Rückgängig</h2>
-        <p>
-            Jede Dennis-Transformation ist von Anfang an umkehrbar.
-            Das System erzeugt automatisch einen inversen Plan,
-            mit dem du Änderungen jederzeit zurücknehmen kannst.
-        </p>
-        <p>
-            Kein versteckter Zustand. Keine irreversiblen Migrationen.
-            Wenn du den Plan sehen kannst, kannst du ihn auch zurückrollen.
-        </p>
-        <p>
-            Dadurch eignet sich Dennis für große Refactorings,
-            Legacy-Systeme und Umgebungen mit hohen Vertrauensanforderungen.
-        </p>
+      <h2>Sicherheit und Reversibilität</h2>
+
+      <p>
+        Jede Transformation ist von Grund auf reversibel.
+      </p>
+
+      <p>
+        Wenn du den Plan sehen kannst, kannst du ihn rückgängig machen.
+      </p>
     </section>
 
+    <!-- OSS -->
     <section id="oss" class="section">
-        <h2>CLI & Open Source</h2>
-        <p>
-            Dennis ist ein offenes, Git-natives Werkzeug.
-            Die CLI ist vollständig nutzbar und wird es auch bleiben.
-        </p>
-        <p>
-            Du kannst alles lokal ausführen, den Code prüfen
-            und Dennis in eigene Workflows integrieren.
-        </p>
-        <p>
-            Die Weboberfläche baut auf demselben deterministischen Kern auf —
-            ohne versteckte Logik oder proprietäre Transformationen.
-        </p>
-        <p>
-          Globale Installation:
-        </p>
-        <div class="demo-box">
-          <code>pipx install dennis</code>
-        </div>
+      <h2>CLI & Open Source</h2>
+
+      <p>
+        Dennis ist CLI-first und vollständig Open Source.
+      </p>
+
+      <div class="demo-box">
+        <code>pipx install dennis</code>
+      </div>
+
+      <p>
+        Keine versteckte Logik. Alles ist überprüfbar.
+      </p>
     </section>
 
+    <!-- CLOUD -->
     <section id="cloud" class="section">
-        <h2>Self-Host oder Cloud</h2>
-        <p>
-        Dennis läuft dort, wo du dich am wohlsten fühlst.
-        </p>
-        <p>
-        Nutze die CLI lokal, betreibe ihn in deiner Infrastruktur
-        oder verwende später die gehostete Forge.
-        </p>
-        <p>
-        Deine Pläne bleiben portabel und lesbar —
-        ohne Bindung an eine bestimmte Umgebung.
-        </p>
+      <h2>Lokal oder Cloud</h2>
+
+      <p>
+        Du kannst Dennis komplett lokal ausführen oder gehostete Varianten nutzen.
+      </p>
+
+      <p>
+        Deine Pläne bleiben immer portabel.
+      </p>
     </section>
 
+    <!-- WHY -->
     <section id="why" class="section">
-        <h2>Warum?</h2>
-        <p>
-            Dennis entstand aus einer einfachen Frage:
-            <strong>Wie verändert man große, komplexe Strukturen sicher?</strong>
-        </p>
-        <p>
-            Klassische Tools sind oft intransparent, langsam
-            oder irreversibel. Dennis löst das Problem,
-            indem der Transformationsplan zur Quelle der Wahrheit wird.
-        </p>
-        <p>
-            Entwickelt für Menschen, die schnell arbeiten wollen —
-            ohne die Kontrolle über ihre Daten zu verlieren.
-        </p>
+      <h2>Warum Dennis?</h2>
+
+      <p>
+        Weil komplexe Systeme ohne Kontrolle zu verändern gefährlich ist.
+      </p>
+
+      <p>
+        Dennis macht Veränderungen sichtbar, überprüfbar und reversibel.
+      </p>
     </section>
 
     <footer>
-      Langsam geschmiedet. Für Vertrauen gebaut.<br />
-      MIT-Lizenz · 15 % zukünftiger Dennis-Einnahmen werden an UNICEF gespendet<br />
+      Langsam geschmiedet. Für Vertrauen gebaut.<br>
+      MIT Lizenz · 15% zukünftiger Einnahmen gehen an UNICEF<br>
       Dennis the Forge © Carlos Revilla 2026
     </footer>
 
@@ -255,37 +293,6 @@
 function toggleSidebar() {
   document.body.classList.toggle("sidebar-collapsed");
 }
-</script>
-
-<script>
-const sections = document.querySelectorAll(".section");
-const navLinks = document.querySelectorAll(".sidebar-nav a");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + id) {
-          link.classList.add("active");
-        }
-      });
-    }
-  });
-}, { root: document.querySelector(".content"), threshold: 0.4 });
-
-sections.forEach(section => observer.observe(section));
-</script>
-
-<script>
-const glowObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add("in-view");
-  });
-}, { root: document.querySelector(".content"), threshold: 0.5 });
-
-sections.forEach(section => glowObserver.observe(section));
 </script>
 
 </body>
