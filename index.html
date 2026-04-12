@@ -42,7 +42,7 @@
         "name": "Carlos Revilla"
       },
       "description": "Deterministic transformation engine for Git-native projects.",
-      "url": "https://crevilla2050.github.io/dennis-forge/",
+      "url": "https://www.dennis-forge.com/",
       "license": "https://opensource.org/licenses/MIT",
       "codeRepository": "https://crevilla2050.github.io/dennis-forge/"
     }
@@ -57,11 +57,10 @@
 
  <div class="header-content">
 
-  <button class="sidebar-toggle" onclick="toggleSidebar()">
+ <button class="sidebar-toggle" onclick="toggleSidebar()">
     <i class="bi bi-list"></i>
   </button>
 
-  <img src="assets/images/logo.png" class="sidebar-logo" />
 <div class="lang-switch">
   <a href="index.html" class="active">EN</a>
   <a href="index-es.html">ES</a>
@@ -94,6 +93,10 @@
               <span>FAQ</span>
             </a>
         </nav>
+        <a href="https://www.dennis-forge.com/repo/" class="btn forge-entry-btn sidebar-forge-btn" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-hammer"></i>
+          <span>Enter The Forge</span>
+        </a>
     </div>
   </aside>
 
@@ -133,7 +136,7 @@
         </div>
 
         <div class="cta">
-
+          <a href="https://www.dennis-forge.com/repo/" class="btn forge-entry-btn content-forge-btn" target="_blank" rel="noopener noreferrer">Enter The Forge</a>
           <a href="https://github.com/crevilla2050/string-audit" class="btn primary">View Source on GitHub</a>
           <a href="#quickstart" class="btn secondary">Quick Start</a>
         </div>
@@ -423,48 +426,99 @@
   </main>
 </div>
 <script>
-    function toggleSidebar() {
-        document.body.classList.toggle("sidebar-collapsed");
-    }
+function toggleSidebar() {
+  document.body.classList.toggle("sidebar-collapsed");
+}
 </script>
 <script>
-const sections = document.querySelectorAll(".section");
-const navLinks = document.querySelectorAll(".sidebar-nav a");
+let sectionObserver;
+let glowObserver;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
+function getContentRoot() {
+  return document.getElementById("main-content");
+}
 
-      navLinks.forEach(link => {
-        link.classList.remove("active");
-        if (link.getAttribute("href") === "#" + id) {
-          link.classList.add("active");
-        }
-      });
+function setupSidebarSections() {
+  document.querySelectorAll(".sidebar-nav a[href^='#']").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href && href.length > 1 && !link.dataset.section) {
+      link.dataset.section = href.slice(1);
     }
   });
-}, {
-  root: document.querySelector(".content"),
-  threshold: 0.4
-});
+}
 
-sections.forEach(section => observer.observe(section));
-</script>
-<script>
-// Section glow on enter
-const glowObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("in-view");
+function updateSidebarNavigation(currentPage) {
+  const homePage = "index.html";
+  const isFaqPage = currentPage === "faq.html";
+
+  document.querySelectorAll(".sidebar-nav a").forEach((link) => {
+    const section = link.dataset.section;
+
+    if (section) {
+      if (isFaqPage) {
+        link.setAttribute("href", "#");
+        link.onclick = (event) => {
+          event.preventDefault();
+          loadPage(homePage, section);
+        };
+      } else {
+        link.setAttribute("href", `#${section}`);
+        link.onclick = null;
+      }
     }
   });
-}, {
-  root: document.querySelector(".content"),
-  threshold: 0.5
-});
+}
 
-sections.forEach(section => glowObserver.observe(section));
+function setupContentObservers() {
+  const contentRoot = getContentRoot();
+  const sections = contentRoot.querySelectorAll(".section");
+  const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+  if (sectionObserver) {
+    sectionObserver.disconnect();
+  }
+
+  if (glowObserver) {
+    glowObserver.disconnect();
+  }
+
+  sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (id && link.dataset.section === id) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }, {
+    root: contentRoot,
+    threshold: 0.4
+  });
+
+  sections.forEach((section) => sectionObserver.observe(section));
+
+  glowObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+      }
+    });
+  }, {
+    root: contentRoot,
+    threshold: 0.5
+  });
+
+  sections.forEach((section) => glowObserver.observe(section));
+}
+
+setupSidebarSections();
+updateSidebarNavigation("index.html");
+setupContentObservers();
 </script>
 <script>
 (function(){
@@ -496,7 +550,7 @@ sections.forEach(section => glowObserver.observe(section));
 })();
 </script>
 <script>
-  async function loadPage(page) {
+  async function loadPage(page, sectionId = null) {
 
     try {
 
@@ -514,13 +568,28 @@ sections.forEach(section => glowObserver.observe(section));
         document.getElementById("main-content").innerHTML = html;
       }
 
-      window.scrollTo(0, 0);
+      updateSidebarNavigation(page);
+      setupContentObservers();
+
+      const contentRoot = getContentRoot();
+      contentRoot.scrollTo(0, 0);
+
+      if (sectionId) {
+        requestAnimationFrame(() => {
+          const target = document.getElementById(sectionId);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      }
 
     } catch (err) {
 
       console.error("Failed to load page:", err);
 
     }
+
+    return false;
   }
 </script>
 <div id="forge-fade"></div>

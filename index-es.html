@@ -42,7 +42,7 @@
         "name": "Carlos Revilla"
       },
       "description": "Deterministic transformation engine for Git-native projects.",
-      "url": "https://crevilla2050.github.io/dennis-forge/",
+      "url": "https://dennis-forge.com/",
       "license": "https://opensource.org/licenses/MIT",
       "codeRepository": "https://github.com/crevilla2050/dennis-forge"
     }
@@ -82,11 +82,15 @@
         <a href="#oss"><i class="bi bi-code-square"></i><span>CLI y OSS</span></a>
         <a href="#cloud"><i class="bi bi-cloud"></i><span>Local o nube</span></a>
         <a href="#why"><i class="bi bi-question-circle"></i><span>¿Por qué?</span></a>
+        <a href="#" onclick="loadPage('faq-es.html')">
+          <i class="bi bi-patch-question"></i>
+          <span>FAQ's</span>
+        </a>
       </nav>
     </div>
   </aside>
 
-  <main class="content">
+  <main id="main-content" class="content">
 
     <!-- HERO -->
     <section class="hero">
@@ -290,6 +294,168 @@ function toggleSidebar() {
   document.body.classList.toggle("sidebar-collapsed");
 }
 </script>
+<script>
+let sectionObserver;
+let glowObserver;
 
+function getContentRoot() {
+  return document.getElementById("main-content");
+}
+
+function setupSidebarSections() {
+  document.querySelectorAll(".sidebar-nav a[href^='#']").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href && href.length > 1 && !link.dataset.section) {
+      link.dataset.section = href.slice(1);
+    }
+  });
+}
+
+function updateSidebarNavigation(currentPage) {
+  const homePage = "index-es.html";
+  const isFaqPage = currentPage === "faq-es.html";
+
+  document.querySelectorAll(".sidebar-nav a").forEach((link) => {
+    const section = link.dataset.section;
+
+    if (section) {
+      if (isFaqPage) {
+        link.setAttribute("href", "#");
+        link.onclick = (event) => {
+          event.preventDefault();
+          loadPage(homePage, section);
+        };
+      } else {
+        link.setAttribute("href", `#${section}`);
+        link.onclick = null;
+      }
+    }
+  });
+}
+
+function setupContentObservers() {
+  const contentRoot = getContentRoot();
+  const sections = contentRoot.querySelectorAll(".section");
+  const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+  if (sectionObserver) {
+    sectionObserver.disconnect();
+  }
+
+  if (glowObserver) {
+    glowObserver.disconnect();
+  }
+
+  sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (id && link.dataset.section === id) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }, {
+    root: contentRoot,
+    threshold: 0.4
+  });
+
+  sections.forEach((section) => sectionObserver.observe(section));
+
+  glowObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+      }
+    });
+  }, {
+    root: contentRoot,
+    threshold: 0.5
+  });
+
+  sections.forEach((section) => glowObserver.observe(section));
+}
+
+setupSidebarSections();
+updateSidebarNavigation("index-es.html");
+setupContentObservers();
+</script>
+<script>
+(function(){
+
+  const k = atob("Mzg7Mzg7NDA7NDA7Mzc7Mzk7Mzc7Mzk7NjY7NjU=").split(";").map(Number);
+  let b = [];
+
+  document.addEventListener("keydown", function(e){
+
+    b.push(e.keyCode);
+
+    if(b.length > k.length){
+      b.shift();
+    }
+
+    if(b.join(",") === k.join(",")){
+
+      const f = document.getElementById("forge-fade");
+      f.style.opacity = 1;
+
+      setTimeout(()=>{
+        location.href="assets/default.html";
+      },900);
+
+    }
+
+  });
+
+})();
+</script>
+<script>
+  async function loadPage(page, sectionId = null) {
+
+    try {
+
+      const response = await fetch(page);
+      const html = await response.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const newContent = doc.querySelector("main");
+
+      if (newContent) {
+        document.getElementById("main-content").innerHTML = newContent.innerHTML;
+      } else {
+        document.getElementById("main-content").innerHTML = html;
+      }
+
+      updateSidebarNavigation(page);
+      setupContentObservers();
+
+      const contentRoot = getContentRoot();
+      contentRoot.scrollTo(0, 0);
+
+      if (sectionId) {
+        requestAnimationFrame(() => {
+          const target = document.getElementById(sectionId);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      }
+
+    } catch (err) {
+
+      console.error("Failed to load page:", err);
+
+    }
+
+    return false;
+  }
+</script>
+<div id="forge-fade"></div>
 </body>
 </html>

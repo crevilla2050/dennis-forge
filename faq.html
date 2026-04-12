@@ -193,9 +193,7 @@ This makes XDEX suitable for environments where transparency of
 the artifact is required but the transformation logic itself must
 remain private.
 </p>
-<p>
-Transparency is a design goal of the format.
-</p>
+
 
 <h3>How is Dennis different from codemods or AST-based tools?</h3>
 
@@ -231,8 +229,13 @@ Dennis does not require a central service to function.
 </p>
 
 <p>
-All users' artifacts for http://dennis-forge.com/repo/ are uploaded and stored in the Dennis cloud storage service.
-We have no access to the contents of the DEX artifacts themselves, just an Index for easy search & download of those Artifacts marked as "Public"
+The Forge stores DEX artifacts and indexes metadata to enable
+search and discovery.
+</p>
+
+<p>
+Artifacts are treated as immutable units. The system does not
+modify their contents.
 </p>
 
 <h3>Does the hosted service replace the CLI?</h3>
@@ -360,6 +363,23 @@ It is especially useful in environments involving:
 <li>auditable workflows</li>
 </ul>
 
+<h3>Is Dennis a replacement for Git?</h3>
+
+<p>
+No.
+</p>
+
+<p>
+Git tracks the state of your codebase.
+Dennis tracks the transformations applied to it.
+</p>
+
+<p>
+Dennis can integrate with Git projects (for example by reusing
+.gitignore rules), but it does not depend on Git and can operate
+in environments where version control is not available.
+</p>
+
 </section>
 
 
@@ -411,33 +431,125 @@ The CLI and deterministic core will remain open source.
 </p>
 
 
-<h3>Will there be a hosted service?</h3>
+<h3>Is there a hosted service?</h3>
 
 <p>
-Possibly. A hosted forge may exist in the future for collaboration
-and artifact sharing.
+Yes. Dennis The Forge is the hosted platform for storing, sharing,
+and inspecting DEX artifacts. It lives under:
+<a href="https://dennis-forge.com/repo/">https://dennis-forge.com/repo/</a>
 </p>
 
 <p>
-However, the CLI and artifact format remain independent of any
-hosted platform.
-</p>
-
-
-<h3>Can I run Dennis without internet access?</h3>
-
-<p>
-Yes. The CLI works entirely locally.
+It provides a structured environment with Workspaces, Projects,
+and artifact visibility controls (private, organization, public).
 </p>
 
 <p>
-Projects can be scanned, plans generated, artifacts created,
-and transformations applied without network access.
+However, the CLI and artifact format remain fully independent
+and can be used without the hosted service.
 </p>
 
 </section>
 
+<section class="section">
+<h2>Dennis The Forge</h2>
 
+<h3>What is Dennis The Forge?</h3>
+
+<p>
+Dennis The Forge is a hosted repository for DEX artifacts.
+</p>
+
+<p>
+It allows users to upload, organize, inspect, and share
+transformations through a structured model of Workspaces,
+Projects, and Artifacts.
+</p>
+
+<p>
+It is not required to use Dennis, but provides a collaborative
+layer on top of the CLI.
+</p>
+
+
+<h3>What are Workspaces and Projects?</h3>
+
+<p>
+Workspaces are containers for organizing related work.
+</p>
+
+<p>
+Projects live inside Workspaces and group related DEX artifacts.
+</p>
+
+<p>
+This structure allows transformations to be organized in a
+meaningful and scalable way.
+</p>
+
+
+<h3>Who can see my artifacts?</h3>
+
+<p>
+Each artifact has a visibility level:
+</p>
+
+<ul>
+<li><strong>Private</strong> — only you can access it</li>
+<li><strong>Organization</strong> — shared within your organization</li>
+<li><strong>Public</strong> — visible to anyone</li>
+</ul>
+
+<p>
+Only artifacts marked as <strong>public</strong> are visible to
+guest users and the public index.
+</p>
+
+
+<h3>Can I upload duplicate DEX artifacts?</h3>
+
+<p>
+No.
+</p>
+
+<p>
+Artifacts are identified by their hash, ensuring that the same
+DEX artifact cannot be uploaded multiple times.
+</p>
+
+<p>
+This preserves integrity and avoids duplication across the system.
+</p>
+
+
+<h3>Can I use The Forge without an account?</h3>
+
+<p>
+Yes. Guest access allows browsing and downloading of public artifacts.
+</p>
+
+<p>
+However, uploading, organizing, and managing artifacts requires
+a registered account.
+</p>
+
+
+<h3>Does The Forge modify my artifacts?</h3>
+
+<p>
+No.
+</p>
+
+<p>
+Artifacts are stored as-is. The Forge only indexes metadata
+to allow searching and discovery.
+</p>
+
+<p>
+The contents of DEX artifacts remain untouched.
+</p>
+
+</section>
 
 <section class="section">
 <h2>Future Development</h2>
@@ -445,16 +557,23 @@ and transformations applied without network access.
 <h3>Will Dennis support other languages?</h3>
 
 <p>
-Yes. The architecture is designed to support scanners for additional
-languages and ecosystems.
+Yes.
 </p>
 
-
-<h3>Will plugins be supported?</h3>
+<p>
+Dennis is designed as an extensible system where transformation
+logic is implemented through plugins.
+</p>
 
 <p>
-Future versions may support plugins for ecosystems such as PHP,
-JavaScript, or React.
+Currently, the available implementation focuses on Python.
+Additional language support (such as JavaScript, PHP, Java, C/C++, and others)
+will be introduced through dedicated plugins.
+</p>
+
+<p>
+The goal is to provide a consistent deterministic model
+across different ecosystems.
 </p>
 
 

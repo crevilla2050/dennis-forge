@@ -1,0 +1,629 @@
+<main>
+
+<section class="section">
+<h1>Haeufig Gestellte Fragen</h1>
+
+<p>
+Dennis Forge fuehrt eine andere Art ein, ueber Software-
+Transformationen nachzudenken. Anstatt Aenderungen sofort auszufuehren,
+erzeugt Dennis deterministische Plaene, die inspiziert, exportiert,
+signiert, verifiziert und sicher angewendet werden koennen.
+</p>
+
+<p>
+Das Leitprinzip ist einfach:
+<strong>erst planen, dann aendern.</strong>
+</p>
+</section>
+
+<div class="faq-nav">
+<a href="#" onclick="loadPage('index-de.html')">← Zurueck zur Startseite</a>
+</div>
+
+<section class="section">
+<h2>Allgemein</h2>
+
+<h3>Welches Problem loest Dennis?</h3>
+
+<p>
+Grosse Code-Transformationen sind von Natur aus riskant. Traditionelle
+Skripte, Codemods oder Migrationstools aendern Dateien oft sofort,
+wodurch es schwierig wird, vor der Ausfuehrung zu verstehen, was sich
+tatsaechlich aendern wird.
+</p>
+
+<p>
+Dennis trennt Planung von Ausfuehrung. Es erzeugt einen deterministischen
+Transformationsplan, der ueberprueft und verifiziert werden kann, bevor
+irgendeine Aenderung angewendet wird.
+</p>
+
+<p>
+Der Plan wird zur Quelle der Wahrheit.
+</p>
+
+
+<h3>Ist Dennis ein Refactoring-Werkzeug?</h3>
+
+<p>
+Nicht ganz. Dennis laesst sich besser als
+<strong>deterministische Transformations-Engine</strong> beschreiben.
+</p>
+
+<p>
+Es ermoeglicht Teams, strukturierte Aenderungen ueber Codebasen hinweg
+zu definieren, zu inspizieren, zu teilen und sicher anzuwenden.
+</p>
+
+
+<h3>Was bedeutet "deterministisch"?</h3>
+
+<p>
+Deterministisch bedeutet, dass dieselbe Eingabe dieselbe Ausgabe
+liefert. Bei demselben Projekt und demselben Woerterbuch erzeugt Dennis
+exakt denselben Transformationsplan.
+</p>
+
+<p>
+Das garantiert Reproduzierbarkeit und erlaubt, Plaene sicher zu
+pruefen, zu speichern und zu verifizieren.
+</p>
+
+<h3>Was ist die Entscheidungsschicht?</h3>
+
+<p>
+Bevor ein Transformationsplan erzeugt wird, bewertet Dennis, ob
+extrahierte Inhalte bedeutungsvoll sind. Diese Entscheidungsschicht
+filtert Rauschen wie SQL-Fragmente, CSS-Klassen, Bezeichner und
+Code-Artefakte heraus.
+</p>
+
+<p>
+So wird sichergestellt, dass DEX-Artefakte sinnvolle
+Transformationen repraesentieren und nicht rohe Extraktion.
+</p>
+
+<h3>Was ist Lineage?</h3>
+
+<p>
+Lineage ist die Kette von Transformationen, die ueber Artefakte hinweg
+aufgezeichnet wird. Jeder Schritt enthaelt Hashes und Metadaten, die ihn
+mit dem vorherigen Zustand verknuepfen.
+</p>
+
+<p>
+Dadurch entsteht eine verifizierbare Historie, in der
+Transformationen im Laufe der Zeit nachverfolgt, auditiert und validiert
+werden koennen.
+</p>
+
+<h3>Warum der Name "Dennis the Forge"?</h3>
+
+<p>
+Eine Schmiede ist ein Ort, an dem Dinge bewusst geformt werden. Nichts
+geschieht zufaellig. Jeder Schritt ist sichtbar. Und das Endprodukt ist
+unveraenderlich und verifizierbar.
+</p>
+
+<p>
+Dennis folgt derselben Philosophie: Transformationen werden geplant,
+ueberprueft und absichtlich ausgefuehrt.
+</p>
+
+<p>
+Der Name ehrt ausserdem <strong>Dennis Ritchie</strong>, Mitentwickler
+der Programmiersprache C und einen der Architekten moderner
+Computertechnik.
+</p>
+
+<h3>Kann Dennis in CI/CD-Pipelines verwendet werden?</h3>
+
+<p>
+Ja.
+</p>
+
+<p>
+Weil Plaene und Artefakte deterministisch sind, koennen sie in
+automatisierten Umgebungen erzeugt, verifiziert und angewendet werden.
+</p>
+
+<p>
+Das ermoeglicht Workflows, in denen Transformationen validiert werden,
+bevor sie in Produktionssystemen angewendet werden.
+</p>
+
+</section>
+
+
+
+<section class="section">
+<h2>DEX-Artefakte</h2>
+
+<h3>Was ist ein DEX-Artefakt?</h3>
+
+<p>
+DEX steht fuer <strong>Deterministic EXchange artifact</strong>.
+</p>
+
+<p>
+Ein DEX-Artefakt ist ein portabler Container, der eine Transformation
+beschreibt. Es enthaelt den Plan, Metadaten und optionale
+kryptografische Signaturen.
+</p>
+
+<p>
+DEX-Artefakte erlauben es, Transformationen sicher zwischen Maschinen
+und Teams zu teilen, zu verifizieren und auszufuehren.
+</p>
+
+
+<h3>Was befindet sich in einer DEX-Datei?</h3>
+
+<p>
+Intern ist eine DEX-Datei ein deterministisches
+<code>tar.gz</code>-Archiv mit:
+</p>
+
+<ul>
+<li><strong>manifest.json</strong> — Metadaten</li>
+<li><strong>payload/plan.json</strong> — Transformationsplan</li>
+<li><strong>signatures/</strong> — optionale Signaturen</li>
+</ul>
+
+
+<h3>Kann ich ein DEX-Artefakt manuell inspizieren?</h3>
+
+<p>
+Ja. DEX-Artefakte sind absichtlich transparent.
+Sie koennen mit Standardwerkzeugen inspiziert werden.
+</p>
+
+<pre>
+tar -tzf artifact.dex
+</pre>
+<h3>Was ist XDEX?</h3>
+
+<p>
+XDEX ist eine Erweiterung des DEX-Formats fuer Situationen, in denen die
+Transformationsnutzlast vertraulich bleiben muss.
+</p>
+
+<p>
+In einem XDEX-Artefakt ist der Transformationsplan verschluesselt,
+waehrend Manifest und Metadaten sichtbar bleiben. So behaelt das
+Artefakt Verifizierbarkeit, Signaturen und Herkunft, waehrend sensible
+Transformationsdetails geschuetzt werden.
+</p>
+
+<p>
+Dadurch eignet sich XDEX fuer Umgebungen, in denen Transparenz des
+Artefakts erforderlich ist, die Transformationslogik selbst aber privat
+bleiben muss.
+</p>
+
+
+<h3>Wie unterscheidet sich Dennis von Codemods oder AST-basierten Werkzeugen?</h3>
+
+<p>
+Traditionelle Codemods und AST-Werkzeuge konzentrieren sich auf die
+direkte Ausfuehrung von Transformationen. Sie arbeiten auf
+Codestrukturen, verfuegen aber typischerweise nicht ueber eine formale
+Planungsschicht.
+</p>
+
+<p>
+Dennis fuehrt eine Trennung zwischen Planung und Ausfuehrung ein. Es
+erzeugt zuerst einen deterministischen Plan, der geprueft, verifiziert
+und geteilt werden kann, bevor irgendeine Aenderung angewendet wird.
+</p>
+
+<p>
+Der Fokus liegt nicht nur darauf, wie Code transformiert wird, sondern
+darauf, Transformationen inspizierbar und reproduzierbar zu machen.
+</p>
+
+<h3>Wo werden DEX-Artefakte gespeichert?</h3>
+
+<p>
+DEX-Artefakte sind portable Dateien.
+</p>
+
+<p>
+Sie koennen in Git-Repositories, Artefakt-Registern, lokalem Speicher
+oder direkt zwischen Teams gespeichert werden.
+</p>
+
+<p>
+Dennis benoetigt keinen zentralen Dienst, um zu funktionieren.
+</p>
+
+<p>
+The Forge speichert DEX-Artefakte und indexiert Metadaten, um Suche und
+Entdeckung zu ermoeglichen.
+</p>
+
+<p>
+Artefakte werden als unveraenderliche Einheiten behandelt. Das System
+veraendert ihren Inhalt nicht.
+</p>
+
+<h3>Ersetzt der gehostete Dienst die CLI?</h3>
+
+<p>
+Nein.
+</p>
+
+<p>
+Die CLI bleibt die primaere und voll leistungsfaehige Schnittstelle.
+Der gehostete Dienst https://dennis-forge.com/repo/ ist eine zusaetzliche
+Ebene fuer Zusammenarbeit, Inspektion und das Teilen von Artefakten.
+</p>
+
+<p>
+Die gesamte Kernfunktionalitaet bleibt lokal verfuegbar.
+</p>
+
+</section>
+
+
+
+<section class="section">
+<h2>Sicherheit, Vertrauen und Chain of Custody</h2>
+
+<h3>Warum unterstuetzt Dennis Signaturen?</h3>
+
+<p>
+Signaturen ermoeglichen Teams zu verifizieren, dass ein
+Transformationsplan nicht veraendert wurde und aus einer
+vertrauenswuerdigen Quelle stammt.
+</p>
+
+
+<h3>Sind Signaturen ersetzbar?</h3>
+
+<p>
+Nein. Signaturen sind <strong>append-only</strong>.
+</p>
+
+<p>
+Jede neue Signatur wird dem Artefakt hinzugefuegt, ohne fruehere zu
+entfernen. Das bewahrt einen vollstaendigen historischen Nachweis von
+Freigaben.
+</p>
+
+
+<h3>Was ermoeglicht das?</h3>
+
+<p>
+Dieses Design erzeugt eine verifizierbare
+<strong>Chain of Custody</strong> fuer Transformationen.
+</p>
+
+<p>
+Artefakte koennen im Laufe der Zeit Signaturen ansammeln, zum Beispiel
+von Entwicklern, Teams, Auditoren oder Organisationen, ohne den
+bisherigen Nachweis zu verlieren.
+</p>
+
+
+<h3>Kann Dennis nachweisen, woher eine Transformation stammt?</h3>
+
+<p>
+DEX-Artefakte enthalten Metadaten, Hashes und Signaturen, mit denen sich
+Ursprung und Integritaet einer Transformation verifizieren lassen.
+</p>
+
+<p>
+Das macht Dennis geeignet fuer Umgebungen, in denen Nachverfolgbarkeit
+und Verantwortlichkeit wichtig sind.
+</p>
+
+
+<h3>Koennen DEX-Artefakte unabhaengig veroeffentlicht werden?</h3>
+
+<p>
+Ja.
+</p>
+
+<p>
+DEX-Artefakte sind portable Dateien und haengen nicht von einem
+bestimmten Dienst oder einer Plattform ab. Sie koennen unabhaengig
+verteilt, in Git gespeichert, zwischen Teams geteilt oder ueber
+Register veroeffentlicht werden.
+</p>
+
+<p>
+Das erlaubt es auch unabhaengigen Forschern oder Auditoren,
+verifizierbare Artefakte zu veroeffentlichen, die Transformationen oder
+Belege beschreiben, ohne auf zentralisierte Infrastruktur angewiesen zu
+sein.
+</p>
+
+<h3>Was sind die aktuellen Einschraenkungen?</h3>
+
+<p>
+Dennis konzentriert sich auf deterministische Transformationen.
+Es versucht nicht, Laufzeitverhalten oder dynamische Ausfuehrung zu
+interpretieren.
+</p>
+
+<p>
+Seine Wirksamkeit haengt von der Qualitaet des Scanners und den
+bereitgestellten Transformationsdefinitionen ab.
+</p>
+
+<p>
+Wie jedes Werkzeug sollte es mit Ueberpruefung und Validierung
+verwendet werden, besonders in kritischen Systemen.
+</p>
+
+<h3>Fuer wen ist Dennis konzipiert?</h3>
+
+<p>
+Dennis ist fuer Ingenieure und Teams gedacht, die mit grossen oder
+komplexen Codebasen arbeiten, in denen Aenderungen kontrolliert,
+ueberpruefbar und reproduzierbar sein muessen.
+</p>
+
+<p>
+Es ist besonders nuetzlich in Umgebungen mit:
+</p>
+
+<ul>
+<li>grossen Refactorings</li>
+<li>Systemmigrationen</li>
+<li>Sicherheits-Patches</li>
+<li>auditierbaren Workflows</li>
+</ul>
+
+<h3>Ist Dennis ein Ersatz fuer Git?</h3>
+
+<p>
+Nein.
+</p>
+
+<p>
+Git verfolgt den Zustand deiner Codebasis.
+Dennis verfolgt die darauf angewendeten Transformationen.
+</p>
+
+<p>
+Dennis kann sich in Git-Projekte integrieren, zum Beispiel durch
+Wiederverwendung von `.gitignore`-Regeln, ist aber nicht von Git
+abhaengig und kann in Umgebungen betrieben werden, in denen keine
+Versionskontrolle verfuegbar ist.
+</p>
+
+</section>
+
+
+
+<section class="section">
+<h2>Workflow</h2>
+
+<h3>Wie sieht ein typischer Dennis-Workflow aus?</h3>
+
+<pre>
+scan → plan → pack → sign → verify → apply
+</pre>
+
+<p>
+Jeder Schritt ist explizit und inspizierbar.
+</p>
+
+
+<h3>Modifiziert Dennis Code sofort?</h3>
+
+<p>
+Nein. Dennis erzeugt zuerst einen Plan, der die Transformation
+beschreibt.
+</p>
+
+<p>
+Erst nach der Ueberpruefung des Plans entscheidest du, ob er angewendet
+wird.
+</p>
+
+
+<h3>Kann Dennis Transformationen rueckgaengig machen?</h3>
+
+<p>
+Ja. Plaene sind von Natur aus reversibel und koennen, wenn sinnvoll,
+inverse Operationen erzeugen.
+</p>
+
+</section>
+
+
+
+<section class="section">
+<h2>Open Source</h2>
+
+<h3>Ist Dennis Open Source?</h3>
+
+<p>
+Ja. Dennis wird unter der MIT-Lizenz veroeffentlicht.
+Die CLI und der deterministische Kern bleiben Open Source.
+</p>
+
+
+<h3>Gibt es einen gehosteten Dienst?</h3>
+
+<p>
+Ja. Dennis The Forge ist die gehostete Plattform zum Speichern, Teilen
+und Inspizieren von DEX-Artefakten. Sie ist erreichbar unter:
+<a href="https://dennis-forge.com/repo/">https://dennis-forge.com/repo/</a>
+</p>
+
+<p>
+Sie bietet eine strukturierte Umgebung mit Workspaces, Projects und
+Sichtbarkeitskontrollen fuer Artefakte (privat, Organisation,
+oeffentlich).
+</p>
+
+<p>
+Die CLI und das Artefaktformat bleiben jedoch vollstaendig
+unabhaengig und koennen ohne den gehosteten Dienst verwendet werden.
+</p>
+
+</section>
+
+<section class="section">
+<h2>Dennis The Forge</h2>
+
+<h3>Was ist Dennis The Forge?</h3>
+
+<p>
+Dennis The Forge ist ein gehostetes Repository fuer DEX-Artefakte.
+</p>
+
+<p>
+Es erlaubt Nutzern, Transformationen ueber ein strukturiertes Modell aus
+Workspaces, Projects und Artifacts hochzuladen, zu organisieren, zu
+inspizieren und zu teilen.
+</p>
+
+<p>
+Es ist fuer die Nutzung von Dennis nicht erforderlich, bietet aber eine
+kollaborative Ebene oberhalb der CLI.
+</p>
+
+
+<h3>Was sind Workspaces und Projects?</h3>
+
+<p>
+Workspaces sind Container zur Organisation zusammenhaengender Arbeit.
+</p>
+
+<p>
+Projects befinden sich innerhalb von Workspaces und gruppieren
+zusammengehoerige DEX-Artefakte.
+</p>
+
+<p>
+Diese Struktur erlaubt es, Transformationen auf sinnvolle und skalierbare
+Weise zu organisieren.
+</p>
+
+
+<h3>Wer kann meine Artefakte sehen?</h3>
+
+<p>
+Jedes Artefakt hat eine Sichtbarkeitsstufe:
+</p>
+
+<ul>
+<li><strong>Privat</strong> — nur du kannst darauf zugreifen</li>
+<li><strong>Organisation</strong> — innerhalb deiner Organisation geteilt</li>
+<li><strong>Oeffentlich</strong> — fuer alle sichtbar</li>
+</ul>
+
+<p>
+Nur Artefakte, die als <strong>oeffentlich</strong> markiert sind, sind
+fuer Gastnutzer und den oeffentlichen Index sichtbar.
+</p>
+
+
+<h3>Kann ich doppelte DEX-Artefakte hochladen?</h3>
+
+<p>
+Nein.
+</p>
+
+<p>
+Artefakte werden ueber ihren Hash identifiziert, wodurch sichergestellt
+wird, dass dasselbe DEX-Artefakt nicht mehrfach hochgeladen werden kann.
+</p>
+
+<p>
+Das bewahrt Integritaet und vermeidet Duplikate im gesamten System.
+</p>
+
+
+<h3>Kann ich The Forge ohne Konto nutzen?</h3>
+
+<p>
+Ja. Gastzugang erlaubt das Durchsuchen und Herunterladen
+oeffentlicher Artefakte.
+</p>
+
+<p>
+Das Hochladen, Organisieren und Verwalten von Artefakten erfordert
+jedoch ein registriertes Konto.
+</p>
+
+
+<h3>Modifiziert The Forge meine Artefakte?</h3>
+
+<p>
+Nein.
+</p>
+
+<p>
+Artefakte werden unveraendert gespeichert. The Forge indexiert nur
+Metadaten, um Suche und Entdeckung zu ermoeglichen.
+</p>
+
+<p>
+Der Inhalt von DEX-Artefakten bleibt unberuehrt.
+</p>
+
+</section>
+
+<section class="section">
+<h2>Zukuenftige Entwicklung</h2>
+
+<h3>Wird Dennis weitere Sprachen unterstuetzen?</h3>
+
+<p>
+Ja.
+</p>
+
+<p>
+Dennis ist als erweiterbares System konzipiert, bei dem die
+Transformationslogik ueber Plugins implementiert wird.
+</p>
+
+<p>
+Derzeit konzentriert sich die verfuegbare Implementierung auf Python.
+Unterstuetzung fuer weitere Sprachen wie JavaScript, PHP, Java, C/C++
+und andere wird ueber dedizierte Plugins eingefuehrt.
+</p>
+
+<p>
+Das Ziel ist, ein konsistentes deterministisches Modell ueber
+verschiedene Oekosysteme hinweg bereitzustellen.
+</p>
+
+
+<h3>Ist das Artefaktformat stabil?</h3>
+
+<p>
+Die deterministischen Prinzipien und das Artefaktmodell sind darauf
+ausgelegt, ueber die Zeit stabil zu bleiben, damit Artefakte auch Jahre
+spaeter noch verifizierbar sind.
+</p>
+
+</section>
+
+
+
+<section class="section">
+<h2>Philosophie</h2>
+
+<blockquote>
+"Ein Archiv ist nicht nur ein Ort, an dem Wahrheiten gespeichert werden.
+Es ist eine Maschine, die so gebaut wurde, dass morgen gestern noch
+vertrauen kann."
+</blockquote>
+
+<p>
+Dennis existiert, um grosse Software-Transformationen transparent,
+reproduzierbar und verantwortlich zu machen.
+</p>
+
+</section>
+<div class="faq-nav">
+<a href="#" onclick="loadPage('index-de.html')">← Zurueck zur Startseite</a>
+</div>
+</main>

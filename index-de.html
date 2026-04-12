@@ -42,7 +42,7 @@
         "name": "Carlos Revilla"
       },
       "description": "Deterministic transformation engine for Git-native projects.",
-      "url": "https://crevilla2050.github.io/dennis-forge/",
+      "url": "https://dennis-forge.com/",
       "license": "https://opensource.org/licenses/MIT",
       "codeRepository": "https://github.com/crevilla2050/dennis-forge"
     }
@@ -82,11 +82,14 @@
         <a href="#oss"><i class="bi bi-code-square"></i><span>CLI & Open Source</span></a>
         <a href="#cloud"><i class="bi bi-cloud"></i><span>Lokal oder Cloud</span></a>
         <a href="#why"><i class="bi bi-question-circle"></i><span>Warum Dennis?</span></a>
+        <a href="#" onclick="loadPage('faq-de.html')">
+          <i class="bi bi-patch-question"></i><span>FAQ</span>
+        </a>
       </nav>
     </div>
   </aside>
 
-  <main class="content">
+  <main id="main-content" class="content">
 
     <!-- HERO -->
     <section class="hero">
@@ -293,6 +296,139 @@
 function toggleSidebar() {
   document.body.classList.toggle("sidebar-collapsed");
 }
+</script>
+<script>
+let sectionObserver;
+let glowObserver;
+
+function getContentRoot() {
+  return document.getElementById("main-content");
+}
+
+function setupSidebarSections() {
+  document.querySelectorAll(".sidebar-nav a[href^='#']").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href && href.length > 1 && !link.dataset.section) {
+      link.dataset.section = href.slice(1);
+    }
+  });
+}
+
+function updateSidebarNavigation(currentPage) {
+  const homePage = "index-de.html";
+  const isFaqPage = currentPage === "faq-de.html";
+
+  document.querySelectorAll(".sidebar-nav a").forEach((link) => {
+    const section = link.dataset.section;
+
+    if (section) {
+      if (isFaqPage) {
+        link.setAttribute("href", "#");
+        link.onclick = (event) => {
+          event.preventDefault();
+          loadPage(homePage, section);
+        };
+      } else {
+        link.setAttribute("href", `#${section}`);
+        link.onclick = null;
+      }
+    }
+  });
+}
+
+function setupContentObservers() {
+  const contentRoot = getContentRoot();
+  const sections = contentRoot.querySelectorAll(".section");
+  const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+  if (sectionObserver) {
+    sectionObserver.disconnect();
+  }
+
+  if (glowObserver) {
+    glowObserver.disconnect();
+  }
+
+  sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (id && link.dataset.section === id) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }, {
+    root: contentRoot,
+    threshold: 0.4
+  });
+
+  sections.forEach((section) => sectionObserver.observe(section));
+
+  glowObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+      }
+    });
+  }, {
+    root: contentRoot,
+    threshold: 0.5
+  });
+
+  sections.forEach((section) => glowObserver.observe(section));
+}
+
+setupSidebarSections();
+updateSidebarNavigation("index-de.html");
+setupContentObservers();
+</script>
+<script>
+  async function loadPage(page, sectionId = null) {
+
+    try {
+
+      const response = await fetch(page);
+      const html = await response.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      const newContent = doc.querySelector("main");
+
+      if (newContent) {
+        document.getElementById("main-content").innerHTML = newContent.innerHTML;
+      } else {
+        document.getElementById("main-content").innerHTML = html;
+      }
+
+      updateSidebarNavigation(page);
+      setupContentObservers();
+
+      const contentRoot = getContentRoot();
+      contentRoot.scrollTo(0, 0);
+
+      if (sectionId) {
+        requestAnimationFrame(() => {
+          const target = document.getElementById(sectionId);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      }
+
+    } catch (err) {
+
+      console.error("Failed to load page:", err);
+
+    }
+
+    return false;
+  }
 </script>
 
 </body>
