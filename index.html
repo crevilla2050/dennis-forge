@@ -83,6 +83,7 @@
             </a>
             <a href="#what"><i class="bi bi-stars"></i><span>What is Dennis?</span></a>
             <a href="#how"><i class="bi bi-diagram-3"></i><span>How it Works</span></a>
+            <a href="#first-run"><i class="bi bi-person-check"></i><span>First Run</span></a>
             <a href="#safety"><i class="bi bi-shield-check"></i><span>Safety & Undo</span></a>
             <a href="#oss"><i class="bi bi-code-square"></i><span>CLI & Open Source</span></a>
             <a href="#cloud"><i class="bi bi-cloud"></i><span>Self-Host / Cloud</span></a>
@@ -200,6 +201,140 @@
         This creates a deterministic transformation plan you can inspect,
         export, share, and replay safely.
       </p>
+      <section id="first-run" class="section">
+        <h2>First Run (No Experience Needed)</h2>
+
+        <p>
+        Dennis was designed for engineers — but its core idea is simple enough
+        to be used by anyone who needs to <strong>understand and verify changes before they happen</strong>.
+        </p>
+
+        <p>
+        You don’t need to know programming to understand what Dennis does.
+        You only need to follow three steps:
+        </p>
+
+        <div class="flow">
+
+          <li><strong>1. Generate a Plan</strong></li>
+          <p>
+          Dennis scans a folder and creates a document describing what would change.
+          Nothing is modified yet.
+          </p>
+
+          <div class="demo-box">
+            <code>dennis plan ./my_folder --dict en.json</code>
+          </div>
+
+          <p class="muted">
+          Think of this as a "preview of changes".
+          </p>
+
+
+          <li><strong>2. Read the Plan</strong></li>
+          <p>
+          The plan is a readable file. It shows:
+          </p>
+
+          <ul>
+            <li>which files are affected</li>
+            <li>what text will change</li>
+            <li>what the new content will be</li>
+          </ul>
+
+          <p>
+          You can review it, share it, or send it for approval.
+          </p>
+
+          <p class="muted">
+          Nothing has changed yet. This is still safe.
+          </p>
+
+
+          <li><strong>3. Apply the Changes</strong></li>
+          <p>
+          Only after reviewing the plan do you apply it:
+          </p>
+
+          <div class="demo-box">
+            <code>dennis apply plan.json</code>
+          </div>
+
+          <p>
+          Dennis will execute exactly what was described.
+          No hidden behavior. No surprises.
+          </p>
+
+        </div>
+
+        <h3>How Do I Know It Worked?</h3>
+
+        <p>
+        Dennis can verify the changes using a deterministic diff system.
+        </p>
+
+        <div class="demo-box">
+          <code>dennis test-diff</code>
+        </div>
+
+        <p>
+        This command checks that transformations behave exactly as expected.
+        If something is inconsistent, the system will report it.
+        </p>
+
+        <p class="muted">
+        This is what makes Dennis suitable for audits, compliance workflows,
+        and environments where changes must be provable.
+        </p>
+
+        <h3>Think of Dennis Like This</h3>
+
+        <ul>
+          <li>A plan is like a contract — it describes what will happen</li>
+          <li>A DEX artifact is like a signed document — it proves authenticity</li>
+          <li>The diff system is like an audit — it verifies the result</li>
+        </ul>
+
+        <p>
+        You don’t need to understand the internal mechanics to trust the process.
+        You only need to see the plan, verify it, and approve it.
+        </p>
+
+        <h2>Guided Workflow (Dennis Wizard)</h2>
+        <div class="demo-box">
+          <code>
+          $ dennis wizard<br/>
+<br/>
+          📂 Select project:<br/>
+          > ./project<br/>
+<br/>
+          🔍 Scanning...<br/>
+          ✔ 12 files found<br/>
+<br/>
+          🧠 Decision layer applied<br/>
+          ✔ 48 meaningful changes<br/>
+<br/>
+          📋 Generate plan? (y/n)<br/>
+          > y<br/>
+<br/>
+          📄 Plan ready<br/>
+<br/>
+          Inspect:<br/>
+          1. Summary<br/>
+          2. Files<br/>
+          3. Continue<br/>
+<br/>
+          > 2<br/>
+<br/>
+          File: main.py<br/>
+          - "Hello"<br/>
+          + "Hola"<br/>
+<br/>
+          Apply? (y/n/export)<br/>
+          </code>
+</div>
+
+      </section>
     </section>
 
     <section id="how" class="section">
