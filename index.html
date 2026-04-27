@@ -2,31 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dennis the Forge</title>
+  <title>Dennis Forge — Deterministic Codemods, you can trust</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dennis Forge is a deterministic codemod engine for Git-native projects. Deterministic codemods and signed transformation artifacts (DEX/XDEX) for signed transformation plans. Plan, review, sign, and safely apply large code changes." />
+  <meta name="description" content="Dennis Forge is a deterministic codemod engine for Git projects. Create checkable, exportable and reversible transformation plans." />
   <meta name="keywords" content="codemods, deterministic refactoring, git transformations, developer tools, code migration, static analysis, CLI tools" />
-  <meta name="author" content="Carlos Revilla - carlos.revilla.m@gmail.com" />
+  <meta name="author" content="Carlos Revilla" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0f1416" />
 
-  <meta property="og:title" content="Dennis Forge — Deterministic Codemods You Can Trust" />
-  <meta property="og:description" content="Plan, inspect, export, and undo large code transformations safely. CLI-first, open source, deterministic." />
+  <meta property="og:title" content="Dennis Forge — Deterministic Codemods, you can trust" />
+  <meta property="og:description" content="Plan, check and undo code transformations. CLI-first, Open Source and deterministic." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crevilla2050.github.io/dennis-forge/" />
-  <meta property="og:image" content="https://crevilla2050.github.io/dennis-forge/assets/images/dennis-forge-hero.png" />
+  <meta property="og:url" content="https://dennis-forge.com/" />
+  <meta property="og:image" content="https://dennis-forge.com/assets/images/dennis-forge-hero.png" />
   <meta property="og:site_name" content="Dennis Forge" />
   <meta name="google-site-verification" content="ADD_LATER" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Dennis Forge — Deterministic Codemods" />
-  <meta name="twitter:description" content="Deterministic transformation engine for Git-native projects. No magic. No lock-in." />
-  <meta name="twitter:image" content="https://crevilla2050.github.io/dennis-forge/assets/images/dennis-forge-hero.png" />
-  <link rel="canonical" href="https://crevilla2050.github.io/dennis-forge/" />
+<meta name="twitter:description" content="Deterministic engine for Git transformations. No magic. No lock-in." />
+  <meta name="twitter:image" content="https://dennis-forge.com/assets/images/dennis-forge-hero.png" />
+  <link rel="canonical" href="https://dennis-forge.com/" />
   
-  <link rel="alternate" hreflang="en" href="https://crevilla2050.github.io/dennis-forge/" />
-  <link rel="alternate" hreflang="es" href="https://crevilla2050.github.io/dennis-forge/index-es.html" />
-  <link rel="alternate" hreflang="de" href="https://crevilla2050.github.io/dennis-forge/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://crevilla2050.github.io/dennis-forge/" />
+  <link rel="alternate" hreflang="en" href="https://dennis-forge.com/" />
+  <link rel="alternate" hreflang="es" href="https://dennis-forge.com/index-es.html" />
+  <link rel="alternate" hreflang="de" href="https://dennis-forge.com/index-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://dennis-forge.com/" />
   <link rel="preload" as="image" href="assets/images/dennis-forge-hero.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
@@ -42,9 +42,10 @@
         "name": "Carlos Revilla"
       },
       "description": "Deterministic transformation engine for Git-native projects.",
-      "url": "https://www.dennis-forge.com/",
+      "url": "https://dennis-forge.com/",
       "license": "https://opensource.org/licenses/MIT",
-      "codeRepository": "https://crevilla2050.github.io/dennis-forge/"
+      "codeRepository": "https://github.com/crevilla2050/string-audit",
+      "keywords": "codemods, deterministic refactoring, git transformations, developer tools, code migration, static analysis, CLI tools"
     }
   </script>
 </head>
@@ -56,6 +57,7 @@
   <div class="header-bg"></div>
 
  <div class="header-content">
+  <img src="assets/images/logo.png" class="sidebar-logo" />
 
  <button class="sidebar-toggle" onclick="toggleSidebar()">
     <i class="bi bi-list"></i>
@@ -121,6 +123,12 @@
         It generates human-reviewable plans, packages them as signed transformation
         artifacts (DEX), and lets teams safely apply large changes with full traceability.
         No magic. No lock-in. Just control.
+        </p>
+
+        <p>
+        New in the latest release: Dennis can now verify applied changes using a
+        deterministic, git-aware diff system. This turns transformations into
+        inspectable and reproducible evidence — not just execution.
         </p>
         
         <p>
@@ -194,9 +202,14 @@
         <code>dennis plan ./project --dict en.json</code><br>
         <code>dennis pack plan.json artifact.dex</code><br>
         <code>dennis dex sign artifact.dex --key dev.key</code><br>
-        <code>dennis dex verify artifact.dex</code>
-      </div>
+        <code>dennis diff-dir ./before ./after</code>
 
+      </div>
+      <p>
+        You can also compare before and after states using a deterministic diff.
+        Dennis uses git-tracked files when available, filters out noise, and
+        produces stable, verifiable change artifacts.
+        </p>
       <p>
         This creates a deterministic transformation plan you can inspect,
         export, share, and replay safely.
@@ -270,8 +283,15 @@
         <h3>How Do I Know It Worked?</h3>
 
         <p>
-        Dennis can verify the changes using a deterministic diff system.
-        </p>
+          Dennis can verify the changes using a deterministic, git-aware diff system.
+          It compares the original state with the result and produces a clean,
+          structured diff that reflects only meaningful changes.
+          </p>
+
+          <p>
+          This diff is deterministic: the same input produces the same result,
+          allowing changes to be verified, reproduced, and audited.
+          </p>
 
         <div class="demo-box">
           <code>dennis test-diff</code>
@@ -300,7 +320,11 @@
         You only need to see the plan, verify it, and approve it.
         </p>
 
-        <h2>Guided Workflow (Dennis Wizard)</h2>
+        <h2>Guided Workflow (Dennis Wizard, Coming soon(tm))</h2>
+        <p class="muted">
+        An interactive guided workflow (Dennis Wizard) is currently in development.
+        It will walk users step-by-step through planning, inspecting, and applying transformations.
+        </p>
         <div class="demo-box">
           <code>
           $ dennis wizard<br/>
@@ -354,10 +378,46 @@
           <li><strong>Apply</strong> — Execute safely</li>
         </ul>
 
+        
+
         <p>
             The plan is the source of truth. Everything flows from it.
         </p>
     </section>
+
+    <section id="diff" class="section">
+    <h2>Deterministic Diff</h2>
+
+    <p>
+    Dennis includes a deterministic diff system designed for verification,
+    not just visualization.
+    </p>
+
+    <p>
+    When comparing two states of a project, Dennis:
+    </p>
+
+    <ul>
+      <li>Uses git-tracked files as the source of truth (when available)</li>
+      <li>Filters out binary files and irrelevant noise</li>
+      <li>Produces structured, stable diff artifacts</li>
+      <li>Guarantees deterministic output (same input → same diff)</li>
+    </ul>
+
+    <p>
+    This allows teams to treat diffs as verifiable evidence of change,
+    not just a visual aid.
+    </p>
+
+    <div class="demo-box">
+      <code>dennis diff-dir ./before ./after</code><br>
+      <code>dennis test-diff</code>
+    </div>
+
+    <p class="muted">
+    The goal is simple: make changes provable, reproducible, and auditable.
+    </p>
+  </section>
 
     <section id="dex" class="section">
       <h2>DEX Artifacts</h2>

@@ -146,6 +146,23 @@ This enables workflows where transformations are validated
 before being applied in production systems.
 </p>
 
+<h3>How does Dennis verify changes after applying them?</h3>
+
+<p>
+Dennis includes a deterministic diff system that compares the original
+state of a project with the result after applying a transformation.
+</p>
+
+<p>
+When used in Git repositories, Dennis focuses on tracked files and
+filters out irrelevant noise such as internal metadata or binary files.
+</p>
+
+<p>
+The result is a clean, structured diff that reflects only meaningful changes.
+Because the diff is deterministic, it can be reproduced and verified reliably.
+</p>
+
 </section>
 
 
@@ -391,7 +408,7 @@ No.
 
 <p>
 Git tracks the state of your codebase.
-Dennis tracks the transformations applied to it.
+Dennis tracks and verifies the transformations applied to it.
 </p>
 
 <p>

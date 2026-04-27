@@ -83,6 +83,24 @@ So wird sichergestellt, dass DEX-Artefakte sinnvolle
 Transformationen repraesentieren und nicht rohe Extraktion.
 </p>
 
+<h3>Wie verifiziert Dennis angewendete Änderungen?</h3>
+
+<p>
+Dennis enthält ein deterministisches Diff-System, das den ursprünglichen
+Zustand eines Projekts mit dem Ergebnis nach der Transformation vergleicht.
+</p>
+
+<p>
+In Git-Projekten konzentriert sich Dennis auf getrackte Dateien und
+filtert irrelevantes Rauschen wie interne Dateien oder Binärdaten heraus.
+</p>
+
+<p>
+Das Ergebnis ist ein strukturierter, stabiler Diff, der ausschließlich
+die relevanten Änderungen darstellt. Da der Diff deterministisch ist,
+kann er zuverlässig reproduziert und überprüft werden.
+</p>
+
 <h3>Was ist Lineage?</h3>
 
 <p>
@@ -384,7 +402,7 @@ Nein.
 
 <p>
 Git verfolgt den Zustand deiner Codebasis.
-Dennis verfolgt die darauf angewendeten Transformationen.
+Dennis verfolgt und verifiziert die darauf angewendeten Transformationen.
 </p>
 
 <p>

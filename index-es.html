@@ -13,7 +13,7 @@
   <meta property="og:title" content="Dennis Forge — Codemods deterministas en los que puedes confiar" />
   <meta property="og:description" content="Planifica, inspecciona y revierte transformaciones de código con seguridad. CLI-first, código abierto y determinista." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://crevilla2050.github.io/dennis-forge/" />
+  <meta property="og:url" content="https://dennis-forge.com/" />
   <meta property="og:image" content="https://crevilla2050.github.io/dennis-forge/assets/images/dennis-forge-hero.png" />
   <meta property="og:site_name" content="Dennis Forge" />
   <meta name="google-site-verification" content="ADD_LATER" />
@@ -21,12 +21,12 @@
   <meta name="twitter:title" content="Dennis Forge — Codemods deterministas" />
 <meta name="twitter:description" content="Motor determinista para transformar proyectos Git. Sin magia. Sin lock-in." />
   <meta name="twitter:image" content="https://crevilla2050.github.io/dennis-forge/assets/images/dennis-forge-hero.png" />
-  <link rel="canonical" href="https://crevilla2050.github.io/dennis-forge/" />
+  <link rel="canonical" href="https://dennis-forge.com/" />
   
-  <link rel="alternate" hreflang="en" href="https://crevilla2050.github.io/dennis-forge/" />
-  <link rel="alternate" hreflang="es" href="https://crevilla2050.github.io/dennis-forge/index-es.html" />
-  <link rel="alternate" hreflang="de" href="https://crevilla2050.github.io/dennis-forge/index-de.html" />
-  <link rel="alternate" hreflang="x-default" href="https://crevilla2050.github.io/dennis-forge/" />
+  <link rel="alternate" hreflang="en" href="https://dennis-forge.com/dennis-forge/" />
+  <link rel="alternate" hreflang="es" href="https://dennis-forge.com/index-es.html" />
+  <link rel="alternate" hreflang="de" href="https://dennis-forge.com/index-de.html" />
+  <link rel="alternate" hreflang="x-default" href="https://dennis-forge.com/" />
   <link rel="preload" as="image" href="assets/images/dennis-forge-hero.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
@@ -44,7 +44,8 @@
       "description": "Deterministic transformation engine for Git-native projects.",
       "url": "https://dennis-forge.com/",
       "license": "https://opensource.org/licenses/MIT",
-      "codeRepository": "https://github.com/crevilla2050/dennis-forge"
+      "codeRepository": "https://github.com/crevilla2050/string-audit",
+      "keywords": "codemods, deterministic refactoring, git transformations, developer tools, code migration, static analysis, CLI tools"
     }
   </script>
 </head>
@@ -112,12 +113,19 @@
         </p>
 
         <p>
+        Nueva funcionalidad: Dennis ahora puede verificar los cambios aplicados
+        mediante un sistema de diff determinista y consciente de Git.
+        Esto convierte las transformaciones en evidencia reproducible,
+        no solo en ejecución.
+        </p>
+
+        <p>
           DEX significa <strong>Deterministic EXchange artifact</strong>.
           Dennis no solo extrae cambios — primero decide qué es realmente significativo.
         </p>
 
         <div class="cta">
-          <a href="https://github.com/crevilla2050/dennis-forge" class="btn primary">GitHub</a>
+          <a href="https://github.com/crevilla2050/string-audit" class="btn primary">GitHub</a>
           <a href="#quickstart" class="btn secondary">Primer uso</a>
         </div>
 
@@ -177,8 +185,13 @@
       <div class="demo-box">
         <code>pipx install dennis</code><br>
         <code>dennis plan ./tu-proyecto</code>
+        <code>dennis diff-dir ./antes ./despues</code>
       </div>
-
+      <p>
+        También puedes comparar el estado antes y después de una transformación.
+        Dennis utiliza archivos rastreados por Git cuando están disponibles,
+        filtra ruido y genera diffs deterministas y verificables.
+      </p>
       <p>
         Genera un plan determinista que puedes inspeccionar,
         exportar y aplicar con seguridad.
@@ -222,6 +235,40 @@
 
       <h3>Auditoría</h3>
       <p>Registro completo de cambios.</p>
+    </section>
+
+    <section id="diff" class="section">
+      <h2>Diff Determinista</h2>
+
+      <p>
+      Dennis incluye un sistema de diff diseñado para verificación,
+      no solo visualización.
+      </p>
+
+      <p>
+      Al comparar dos estados de un proyecto, Dennis:
+      </p>
+
+      <ul>
+        <li>Usa archivos rastreados por Git como fuente de verdad</li>
+        <li>Filtra archivos binarios y ruido irrelevante</li>
+        <li>Genera diffs estructurados y estables</li>
+        <li>Garantiza resultados deterministas (misma entrada → mismo diff)</li>
+      </ul>
+
+      <p>
+      Esto permite tratar los cambios como evidencia verificable,
+      no solo como una comparación visual.
+      </p>
+
+      <div class="demo-box">
+        <code>dennis diff-dir ./antes ./despues</code><br>
+        <code>dennis test-diff</code>
+      </div>
+
+      <p class="muted">
+      El objetivo: hacer los cambios reproducibles, auditables y confiables.
+      </p>
     </section>
 
     <!-- SAFETY -->

@@ -132,7 +132,23 @@ antes de aplicarse en sistemas de producción.
 
 </section>
 
+<h3>¿Cómo verifica Dennis los cambios después de aplicarlos?</h3>
 
+<p>
+Dennis incluye un sistema de diff determinista que compara el estado
+original del proyecto con el resultado final.
+</p>
+
+<p>
+Cuando se usa con Git, Dennis se enfoca en archivos rastreados y filtra
+ruido como archivos internos o binarios.
+</p>
+
+<p>
+El resultado es un diff limpio y estructurado que refleja únicamente
+los cambios relevantes. Al ser determinista, puede reproducirse y
+verificarse de forma confiable.
+</p>
 
 <section class="section">
 <h2>Artefactos DEX</h2>
@@ -379,7 +395,7 @@ No.
 
 <p>
 Git rastrea el estado de tu base de código.
-Dennis rastrea las transformaciones aplicadas sobre ella.
+Dennis rastrea y verifica las transformaciones aplicadas sobre ella.
 </p>
 
 <p>
